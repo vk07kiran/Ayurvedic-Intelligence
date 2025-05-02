@@ -1,0 +1,49 @@
+
+  
+  /* Start Features */
+  .features {
+    padding-top: var(--section-padding);
+    padding-bottom: var(--section-padding);
+    background-color: var(--section-background);
+  }
+  .special-heading {
+    color: #ebeced;
+    font-size: 100px;
+    text-align: center;
+    font-weight: 800;
+    letter-spacing: -3px;
+    margin: 0;
+  }
+  @media (max-width: 767px) {
+    .special-heading {
+      font-size: 60px;
+    }
+  }
+  .about .heading p {
+    margin: -30px 0 30px;
+    font-size: 20px;
+    text-align: center;
+    color: #797979;
+  }
+  .box-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 20px;
+  }
+  .box {
+    text-align: center;
+  }
+  .box img {
+    max-width: 100%;
+  }
+  .all-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 10px 15px;
+    background-color: var(--main-color);
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+  }
+  /* End Features */
+  
