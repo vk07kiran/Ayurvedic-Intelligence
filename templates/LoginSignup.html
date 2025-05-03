@@ -5,7 +5,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>SignIn&SignUp</title>
-  <link rel="stylesheet" type="text/css" href="../css/LoginSingup.css" />
+  <link rel="stylesheet" type="text/css" href="../static/css/LoginSingup.css" />
 
 
 </head>
@@ -16,38 +16,39 @@
     <div class="forms-container">
       <div class="signin-signup">
 
-        <form action="LandingPage.html" class="sign-in-form">
+        <!-- SIGN IN FORM -->
+        <form action="/login" method="POST" class="sign-in-form">
+
           <h2 class="title">Sign In</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" />
+            <input type="text" placeholder="Username" name="loginusername" required />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="Password" name="loginpassword" required />
           </div>
           <input type="submit" value="Login" class="btn solid" />
-
         </form>
 
 
-        <form action="" class="sign-up-form">
+        <!-- SIGN UP FORM -->
+        <form action="/signup" method="POST" class="sign-up-form">
+
           <h2 class="title">Sign Up</h2>
           <div class="input-field">
             <i class="fas fa-user"></i>
-            <input type="text" placeholder="Username" />
+            <input type="text" placeholder="Username" name="username" required />
           </div>
           <div class="input-field">
             <i class="fas fa-envelope"></i>
-            <input type="email" placeholder="Email" />
+            <input type="email" placeholder="Email" name="email" required />
           </div>
           <div class="input-field">
             <i class="fas fa-lock"></i>
-            <input type="password" placeholder="Password" />
+            <input type="password" placeholder="Password" name="password" required />
           </div>
           <input type="submit" value="Sign Up" class="btn solid" />
-
-
         </form>
       </div>
     </div>
@@ -73,7 +74,7 @@
     </div>
   </div>
 
-  <script src="../js/LoginSignup.js"></script>
+  <script src="../static/js/LoginSignup.js"></script>
 </body>
 
 </html>
