@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- doccure/doctor-profile-settings.html  30 Nov 2019 04:12:14 GMT -->
+
+<head>
+	<meta charset="utf-8">
+	<title>Doccure</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+
+	<!-- Favicons -->
+	<link href="assets/img/favicon.png" rel="icon">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css">
+
+	<!-- Fontawesome CSS -->
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/fontawesome.min.css">
+	<link rel="stylesheet" href="assets/plugins/fontawesome/css/all.min.css">
+
+	<!-- Select2 CSS -->
+	<link rel="stylesheet" href="assets/plugins/select2/css/select2.min.css">
+
+	<!-- Bootstrap CSS -->
+	<link rel="stylesheet" href="assets/plugins/bootstrap-tagsinput/css/bootstrap-tagsinput.css">
+
+	<link rel="stylesheet" href="assets/plugins/dropzone/dropzone.min.css">
+
+	<!-- Main CSS -->
+	<link rel="stylesheet" href="assets/css/style.css">
+
+	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	<!--[if lt IE 9]>
+			<script src="assets/js/html5shiv.min.js"></script>
+			<script src="assets/js/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+
+<body>
+
+	<!-- Main Wrapper -->
+	<div class="main-wrapper">
+
+		<!-- Header -->
+		<header class="header">
+			<nav class="navbar navbar-expand-lg header-nav">
+				<div class="navbar-header">
+					<a id="mobile_btn" href="javascript:void(0);">
+						<span class="bar-icon">
+							<span></span>
+							<span></span>
+							<span></span>
+						</span>
+					</a>
+					<a href="index-2.html" class="navbar-brand logo">
+
+						<img src="../static/assets/img/AI_logo.png" class="img-fluid" alt="Logo" height="60px" width="60px">
+					</a>
+				</div>
+				<div class="main-menu-wrapper">
+					<div class="menu-header">
+						<a href="index-2.html" class="menu-logo">
+							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
+						</a>
+						<a id="menu_close" class="menu-close" href="javascript:void(0);">
+							<i class="fas fa-times"></i>
+						</a>
+					</div>
+					<ul class="main-nav">
+						<li class="login-link">
+							<a href="login.html">Login / Signup</a>
+						</li>
+					</ul>
+				</div>
+				<ul class="nav header-navbar-rht">
+					<li class="nav-item contact-item">
+						<div class="header-contact-img">
+							<i class="far fa-hospital"></i>
+						</div>
+						<div class="header-contact-detail">
+							<p class="contact-header">Contact</p>
+							<p class="contact-info-header"> +1 315 369 5943</p>
+						</div>
+					</li>
+
+					<!-- User Menu -->
+					<li class="nav-item dropdown has-arrow logged-item">
+						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
+							<span class="user-img">
+								<img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31"
+									alt="Darren Elder">
+							</span>
+						</a>
+						<div class="dropdown-menu dropdown-menu-right">
+							<div class="user-header">
+								<div class="avatar avatar-sm">
+									<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"
+										class="avatar-img rounded-circle">
+								</div>
+								<div class="user-text">
+									<h6>Darren Elder</h6>
+									<p class="text-muted mb-0">Doctor</p>
+								</div>
+							</div>
+							<a class="dropdown-item" href="doctor-dashboard.html">Dashboard</a>
+							<a class="dropdown-item" href="doctor-profile-settings.html">Profile Settings</a>
+							<a class="dropdown-item" href="login.html">Logout</a>
+						</div>
+					</li>
+					<!-- /User Menu -->
+
+				</ul>
+			</nav>
+		</header>
+		<!-- /Header -->
+
+
+
+		<!-- Page Content -->
+		<div class="content">
+			<div class="container-fluid">
+
+				<div class="row">
+					<div class="col-md-5 col-lg-4 col-xl-3 theiaStickySidebar">
+
+						<!-- Profile Sidebar -->
+						<div class="profile-sidebar">
+							<div class="widget-profile pro-widget-content">
+								<div class="profile-info-widget">
+									<a href="#" class="booking-doc-img">
+										<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+									</a>
+									<div class="profile-det-info">
+										<h3>Dr. Darren Elder</h3>
+
+										<div class="patient-details">
+											<h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
+										</div>
+									</div>
+								</div>
+							</div>
+							<div class="dashboard-widget">
+								<nav class="dashboard-menu">
+									<ul>
+										<li class="active">
+											<!-- <a href="{{ url_for('dashboard') }}"> -->
+											<a href="doctor-dashboard.html">
+												<i class="fas fa-columns"></i>
+												<span>Dashboard</span>
+											</a>
+										</li>
+										</li>
+										<li>
+											<a href="chat-doctor.html">
+												<i class="fas fa-comments"></i>
+												<span>Message</span>
+											</a>
+										</li>
+										<li>
+											<a href="doctor-profile-settings.html">
+												<i class="fas fa-user-cog"></i>
+												<span>Profile Settings</span>
+											</a>
+										</li>
+										<li>
+											<a href="doctor-change-password.html">
+												<i class="fas fa-lock"></i>
+												<span>Change Password</span>
+											</a>
+										</li>
+										<li>
+											<a href="index-2.html">
+												<i class="fas fa-sign-out-alt"></i>
+												<span>Logout</span>
+											</a>
+										</li>
+									</ul>
+								</nav>
+							</div>
+						</div>
+						<!-- /Profile Sidebar -->
+
+					</div>
+					<div class="col-md-7 col-lg-8 col-xl-9">
+
+						<!-- Basic Information -->
+						<form action="/submit" method="POST" type="file" enctype="multipart/form-data">
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Basic Information</h4>
+									<div class="row form-row">
+										<div class="col-md-12">
+											<div class="form-group">
+												<div class="change-avatar">
+													<div class="profile-img">
+														<img src="{{ url_for('uploaded_image', filename=doctor.DoctorProfilePic) }}"
+															alt="User Image">
+													</div>
+													<div class="upload-img">
+														<div class="change-photo-btn">
+															<span><i class="fa fa-upload"></i> Upload Photo</span>
+															<input class="upload" type="file" id="imageUpload"
+																name="DoctorProfilePic" accept=".jpg, .jpeg"
+																onchange="previewProfileImage(event)">
+														</div>
+														<script>
+															function previewProfileImage(event) {
+																const input = event.target;
+																const preview = document.getElementById('imagePreview');
+																const container = document.getElementById('imagePreviewContainer');
+
+																if (input.files && input.files[0]) {
+																	const reader = new FileReader();
+
+																	reader.onload = function (e) {
+																		preview.src = e.target.result;
+																		preview.style.display = 'block';
+																	}
+
+																	reader.readAsDataURL(input.files[0]);
+																} else {
+																	preview.src = '#';
+																	preview.style.display = 'none';
+																}
+															}
+														</script>
+
+														<!-- Image Preview Section -->
+														<div id="imagePreviewContainer" style="margin-top:10px;">
+															<img id="imagePreview" src="#" alt="Image Preview"
+																style="display:none; max-width: 200px; height: auto;" />
+														</div>
+
+														<small class="form-text text-muted">Allowed JPG, GIF or PNG. Max
+															size of 2MB</small>
+													</div>
+												</div>
+											</div>
+										</div>
+										<input type="hidden" name="DoctorID"
+											value="{{ doctor.DoctorID if doctor else 0 }}">
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Username <span class="text-danger">*</span></label>
+												<input name="DoctorUsename"
+													value="{{ doctor.DoctorUsename if doctor else '' }}" type="text"
+													class="form-control" readonly>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Email <span class="text-danger">*</span></label>
+												<input name="DoctorEmail" type="email"
+													value="{{ doctor.DoctorEmail if doctor else '' }}" type="email"
+													class="form-control" readonly>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>First Name <span class="text-danger">*</span></label>
+												<input name="DoctorFirstName"
+													value="{{ doctor.DoctorFirstName if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Last Name <span class="text-danger">*</span></label>
+												<input name="DoctorLastName"
+													value="{{ doctor.DoctorLastName if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Phone Number</label>
+												<input name="DoctorPhone"
+													value="{{ doctor.DoctorPhone if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Gender</label>
+												<input name="DoctorGender"
+													value="{{ doctor.DoctorGender if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group mb-0">
+												<label>Date of Birth</label>
+												<input name="DoctorDOB" type="date"
+													value="{{ doctor.DoctorDOB if doctor else '' }}"
+													class="form-control">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<!-- /Basic Information -->
+
+							<!-- About Me -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">About Me</h4>
+									<div class="form-group mb-0">
+										<label>Biography</label>
+										<textarea class="form-control" rows="5"
+											name="DoctorBio">{{ doctor.DoctorBio if doctor else '' }}</textarea>
+
+									</div>
+								</div>
+							</div>
+							<!-- /About Me -->
+
+							<!-- Clinic Info -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Clinic Info</h4>
+									<div class="row form-row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Clinic Name</label>
+												<input name="DoctorClinicName"
+													value="{{ doctor.DoctorClinicName if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Clinic Address</label>
+												<input name="DoctorClinicAddress"
+													value="{{ doctor.DoctorClinicAddress if doctor else '' }}"
+													type="text" class="form-control">
+											</div>
+										</div>
+										<div class="col-md-12">
+											<div class="form-group">
+												<label>Clinic Images</label>
+
+											</div>
+											<div class="upload-wrap">
+												<div class="upload-images">
+													<img src="assets/img/features/feature-01.jpg" alt="Upload Image">
+													<a href="javascript:void(0);"
+														class="btn btn-icon btn-danger btn-sm"><i
+															class="far fa-trash-alt"></i></a>
+												</div>
+												<div class="upload-images">
+													<img src="assets/img/features/feature-02.jpg" alt="Upload Image">
+													<a href="javascript:void(0);"
+														class="btn btn-icon btn-danger btn-sm"><i
+															class="far fa-trash-alt"></i></a>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Clinic Info -->
+
+							<!-- Contact Details -->
+							<div class="card contact-card">
+								<div class="card-body">
+									<h4 class="card-title">Contact Details</h4>
+									<div class="row form-row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Address Line 1</label>
+												<input name="DoctorAddress1"
+													value="{{ doctor.DoctorAddress1 if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Address Line 2</label>
+												<input name="DoctorAddress2"
+													value="{{ doctor.DoctorAddress2 if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">City</label>
+												<input name="DoctorCity"
+													value="{{ doctor.DoctorCity if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">State / Province</label>
+												<input name="DoctorState"
+													value="{{ doctor.DoctorState if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Country</label>
+												<input name="DoctorCountry"
+													value="{{ doctor.DoctorCountry if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label class="control-label">Postal Code</label>
+												<input name="DoctorPostalCode"
+													value="{{ doctor.DoctorPostalCode if doctor else '' }}" type="text"
+													class="form-control">
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+							<!-- /Contact Details -->
+
+							<!-- Pricing -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Pricing</h4>
+
+									<div class="form-group mb-0">
+										<div id="pricing_select">
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="price_free" name="rating_option"
+													class="custom-control-input" value="price_free" checked>
+												<label class="custom-control-label" for="price_free">Free</label>
+											</div>
+											<div class="custom-control custom-radio custom-control-inline">
+												<input type="radio" id="price_custom" name="rating_option"
+													value="custom_price" class="custom-control-input">
+												<label class="custom-control-label" for="price_custom">Custom Price (per
+													hour)</label>
+											</div>
+										</div>
+
+									</div>
+
+									<div class="row custom_price_cont" id="custom_price_cont" style="display: none;">
+										<div class="col-md-4">
+											<input type="text" class="form-control" id="custom_rating_input"
+												name="DoctorFeePerHour"
+												value="{{ doctor.DoctorFeePerHour if doctor else '' }}"
+												placeholder="20">
+											<small class="form-text text-muted">Custom price you can add</small>
+										</div>
+									</div>
+
+								</div>
+							</div>
+							<!-- /Pricing -->
+
+							<!-- Services and Specialization -->
+							<div class="card services-card">
+								<div class="card-body">
+									<h4 class="card-title">Services and Specialization</h4>
+									<div class="form-group">
+										<label>Services</label>
+										<input type="text" data-role="tagsinput" class="input-tags form-control"
+											placeholder="Enter Services" name="DoctorServices"
+											value="{{ doctor.DoctorServices if doctor else '' }}" id="services">
+										<small class="form-text text-muted">Note : Type & Press enter to add new
+											services</small>
+									</div>
+									<div class="form-group mb-0">
+										<label>Specialization </label>
+										<input class="input-tags form-control" type="text" data-role="tagsinput"
+											placeholder="Enter Specialization" name="DoctorSpecialization"
+											value="{{ doctor.DoctorSpecialization if doctor else '' }}" id="specialist">
+										<small class="form-text text-muted">Note : Type & Press enter to add new
+											specialization</small>
+									</div>
+								</div>
+							</div>
+							<!-- /Services and Specialization -->
+
+							<!-- Education -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Education</h4>
+									<div class="education-info">
+										<div class="row form-row education-cont">
+											<div class="col-12 col-md-10 col-lg-11">
+												<div class="row form-row">
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Degree</label>
+															<input type="text" name="DoctorDegreeName"
+																value="{{ doctor.DoctorDegreeName if doctor else '' }}"
+																class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>College/Institute</label>
+															<input name="DoctorCollege"
+																value="{{ doctor.DoctorCollege if doctor else '' }}"
+																type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Year of Completion</label>
+															<input name="DoctorYearOfCompletion"
+																value="{{ doctor.DoctorYearOfCompletion if doctor else '' }}"
+																type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-education"><i
+												class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Education -->
+
+							<!-- Experience -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Experience</h4>
+									<div class="experience-info">
+										<div class="row form-row experience-cont">
+											<div class="col-12 col-md-10 col-lg-11">
+												<div class="row form-row">
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Hospital Name</label>
+															<input name="DoctorExperienceHospital"
+																value="{{ doctor.DoctorExperienceHospital if doctor else '' }}"
+																type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>From</label>
+															<input name="DoctorExperienceFromYear"
+																value="{{ doctor.DoctorExperienceFromYear if doctor else '' }}"
+																type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>To</label>
+															<input name="DoctorExperienceToYear"
+																value="{{ doctor.DoctorExperienceToYear if doctor else '' }}"
+																type="text" class="form-control">
+														</div>
+													</div>
+													<div class="col-12 col-md-6 col-lg-4">
+														<div class="form-group">
+															<label>Designation</label>
+															<input name="DoctorExperienceDesignation"
+																value="{{ doctor.DoctorExperienceDesignation if doctor else '' }}"
+																type="text" class="form-control">
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-experience"><i
+												class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Experience -->
+
+							<!-- Awards -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Awards</h4>
+									<div class="awards-info">
+										<div class="row form-row awards-cont">
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Awards</label>
+													<input name="DoctorAward"
+														value="{{ doctor.DoctorAward if doctor else '' }}" type="text"
+														class="form-control">
+												</div>
+											</div>
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Year</label>
+													<input name="DoctorAwardYear"
+														value="{{ doctor.DoctorAwardYear if doctor else '' }}"
+														type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-award"><i
+												class="fa fa-plus-circle"></i>
+											Add More</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Awards -->
+
+							<!-- Memberships -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Memberships</h4>
+									<div class="membership-info">
+										<div class="row form-row membership-cont">
+											<div class="col-12 col-md-10 col-lg-5">
+												<div class="form-group">
+													<label>Memberships</label>
+													<input name="DoctorMemberships"
+														value="{{ doctor.DoctorMemberships if doctor else '' }}"
+														type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-membership"><i
+												class="fa fa-plus-circle"></i> Add More</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Memberships -->
+
+							<!-- Registrations -->
+							<div class="card">
+								<div class="card-body">
+									<h4 class="card-title">Registrations</h4>
+									<div class="registrations-info">
+										<div class="row form-row reg-cont">
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Registrations</label>
+													<input name="DoctorRegistrations"
+														value="{{ doctor.DoctorRegistrations if doctor else '' }}"
+														type="text" class="form-control">
+												</div>
+											</div>
+											<div class="col-12 col-md-5">
+												<div class="form-group">
+													<label>Year</label>
+													<input name="DoctorRegistrationYear"
+														value="{{ doctor.DoctorRegistrationYear if doctor else '' }}"
+														type="text" class="form-control">
+												</div>
+											</div>
+										</div>
+									</div>
+									<div class="add-more">
+										<a href="javascript:void(0);" class="add-reg"><i class="fa fa-plus-circle"></i>
+											Add
+											More</a>
+									</div>
+								</div>
+							</div>
+							<!-- /Registrations -->
+
+							<div class="submit-section submit-btn-bottom">
+								<button type="submit" class="btn btn-primary submit-btn">Save Changes</button>
+							</div>
+						</form>
+					</div>
+				</div>
+
+			</div>
+
+		</div>
+		<!-- /Page Content -->
+
+		<!-- footer section starts  -->
+		<style>
+			.footerDoc .credits {
+				padding: 1rem;
+				padding-top: 2rem;
+				margin-top: 2rem;
+				text-align: center;
+				font-size: 2rem;
+				color: #000;
+				border-top: .1rem solid rgba(0, 0, 0, .1);
+			}
+
+
+			.footerDoc .credits span {
+				color: var(--Soft-Red);
+				cursor: pointer;
+			}
+		</style>
+		<section class="footerDoc" id="footerDoc">
+			<div class="credits">Created by <span>Ayurvedic AI Team</span> | All rights reserved</div>
+		</section>
+		<!-- footer section ends -->
+
+	</div>
+	<!-- /Main Wrapper -->
+
+	<!-- jQuery -->
+	<script src="assets/js/jquery.min.js"></script>
+
+	<!-- Bootstrap Core JS -->
+	<script src="assets/js/popper.min.js"></script>
+	<script src="assets/js/bootstrap.min.js"></script>
+
+	<!-- Sticky Sidebar JS -->
+	<script src="assets/plugins/theia-sticky-sidebar/ResizeSensor.js"></script>
+	<script src="assets/plugins/theia-sticky-sidebar/theia-sticky-sidebar.js"></script>
+
+	<!-- Select2 JS -->
+	<script src="assets/plugins/select2/js/select2.min.js"></script>
+
+	<!-- Dropzone JS -->
+	<script src="assets/plugins/dropzone/dropzone.min.js"></script>
+
+	<!-- Bootstrap Tagsinput JS -->
+	<script src="assets/plugins/bootstrap-tagsinput/js/bootstrap-tagsinput.js"></script>
+
+	<!-- Profile Settings JS -->
+	<script src="assets/js/profile-settings.js"></script>
+
+	<!-- Custom JS -->
+	<script src="assets/js/script.js"></script>
+
+</body>
+
+<!-- doccure/doctor-profile-settings.html  30 Nov 2019 04:12:15 GMT -->
+
+</html>
