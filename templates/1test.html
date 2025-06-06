@@ -1,47 +1,51 @@
 <!DOCTYPE html>
-<html>
-<head><title>Doctor Profile</title></head>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Patient Profile</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
 <body>
-    <h2>{{ 'Update' if doctor else 'Add' }} Doctor Profile</h2>
-    <form action="/submit" method="POST">
-        <input type="hidden" name="DoctorID" value="{{ doctor.DoctorID if doctor else 0 }}">
+    <h1>Patient Profile</h1>
 
-        <label>Username: <input name="DoctorUsename" value="{{ doctor.DoctorUsename if doctor else '' }}"></label><br>
-        <label>Email: <input name="DoctorEmail" type="email" value="{{ doctor.DoctorEmail if doctor else '' }}"></label><br>
-        <label>First Name: <input name="DoctorFirstName" value="{{ doctor.DoctorFirstName if doctor else '' }}"></label><br>
-        <label>Last Name: <input name="DoctorLastName" value="{{ doctor.DoctorLastName if doctor else '' }}"></label><br>
-        <label>Password: <input name="DoctorPassword" type="password" required></label><br>
-        <label>Phone: <input name="DoctorPhone" value="{{ doctor.DoctorPhone if doctor else '' }}"></label><br>
-        <label>Gender: <input name="DoctorGender" value="{{ doctor.DoctorGender if doctor else '' }}"></label><br>
-        <label>DOB: <input name="DoctorDOB" type="date" value="{{ doctor.DoctorDOB if doctor else '' }}"></label><br>
-        <label>Bio: <textarea name="DoctorBio">{{ doctor.DoctorBio if doctor else '' }}</textarea></label><br>
-        <label>Clinic Name: <input name="DoctorClinicName" value="{{ doctor.DoctorClinicName if doctor else '' }}"></label><br>
-        <label>Clinic Address: <input name="DoctorClinicAddress" value="{{ doctor.DoctorClinicAddress if doctor else '' }}"></label><br>
-        <label>Profile Pic URL: <input name="DoctorProfilePic" value="{{ doctor.DoctorProfilePic if doctor else '' }}"></label><br>
-        <label>Images: <input name="DoctorImages" value="{{ doctor.DoctorImages if doctor else '' }}"></label><br>
-        <label>Address1: <input name="DoctorAddress1" value="{{ doctor.DoctorAddress1 if doctor else '' }}"></label><br>
-        <label>Address2: <input name="DoctorAddress2" value="{{ doctor.DoctorAddress2 if doctor else '' }}"></label><br>
-        <label>City: <input name="DoctorCity" value="{{ doctor.DoctorCity if doctor else '' }}"></label><br>
-        <label>State: <input name="DoctorState" value="{{ doctor.DoctorState if doctor else '' }}"></label><br>
-        <label>Country: <input name="DoctorCountry" value="{{ doctor.DoctorCountry if doctor else '' }}"></label><br>
-        <label>Postal Code: <input name="DoctorPostalCode" value="{{ doctor.DoctorPostalCode if doctor else '' }}"></label><br>
-        <label>Fee Per Hour: <input name="DoctorFeePerHour" value="{{ doctor.DoctorFeePerHour if doctor else '' }}"></label><br>
-        <label>Specialization: <input name="DoctorSpecialization" value="{{ doctor.DoctorSpecialization if doctor else '' }}"></label><br>
-        <label>Services: <input name="DoctorServices" value="{{ doctor.DoctorServices if doctor else '' }}"></label><br>
-        <label>Degree Name: <input name="DoctorDegreeName" value="{{ doctor.DoctorDegreeName if doctor else '' }}"></label><br>
-        <label>College: <input name="DoctorCollege" value="{{ doctor.DoctorCollege if doctor else '' }}"></label><br>
-        <label>Year of Completion: <input name="DoctorYearOfCompletion" value="{{ doctor.DoctorYearOfCompletion if doctor else '' }}"></label><br>
-        <label>Experience Hospital: <input name="DoctorExperienceHospital" value="{{ doctor.DoctorExperienceHospital if doctor else '' }}"></label><br>
-        <label>Experience From: <input name="DoctorExperienceFromYear" value="{{ doctor.DoctorExperienceFromYear if doctor else '' }}"></label><br>
-        <label>Experience To: <input name="DoctorExperienceToYear" value="{{ doctor.DoctorExperienceToYear if doctor else '' }}"></label><br>
-        <label>Designation: <input name="DoctorExperienceDesignation" value="{{ doctor.DoctorExperienceDesignation if doctor else '' }}"></label><br>
-        <label>Award: <input name="DoctorAward" value="{{ doctor.DoctorAward if doctor else '' }}"></label><br>
-        <label>Award Year: <input name="DoctorAwardYear" value="{{ doctor.DoctorAwardYear if doctor else '' }}"></label><br>
-        <label>Memberships: <input name="DoctorMemberships" value="{{ doctor.DoctorMemberships if doctor else '' }}"></label><br>
-        <label>Registrations: <input name="DoctorRegistrations" value="{{ doctor.DoctorRegistrations if doctor else '' }}"></label><br>
-        <label>Registration Year: <input name="DoctorRegistrationYear" value="{{ doctor.DoctorRegistrationYear if doctor else '' }}"></label><br>
+    {% if data %}
+        <div>
+            <h2>Patient Information</h2>
+            <img src="{{ url_for('static', filename='images/' ~ data.PatientProfilePic) }}" alt="Patient Profile Picture" width="150" height="150">
+            <p><strong>Full Name:</strong> {{ data.PatientFirstName }} {{ data.PatientLastName }}</p>
+            <p><strong>User ID:</strong> {{ data.UserID }}</p>
+            <p><strong>Address:</strong> {{ data.PatientAddress }}</p>
+            <p><strong>Phone:</strong> {{ data.PatientPhone }}</p>
+            <p><strong>Blood Group:</strong> {{ data.PatientBloodGroup }}</p>
+        </div>
 
-        <button type="submit">Save</button>
-    </form>
+        <div>
+            <h2>Doctor Information</h2>
+            {% if data.PatientAppointedDoctorID %}
+                <img src="{{ url_for('static', filename='images/' ~ data.DoctorProfilePic) }}" alt="Doctor Profile Picture" width="150" height="150">
+                <p><strong>Doctor Name:</strong> {{ data.DoctorFirstName}} {{ data.DoctorLastName }}</p>
+                <p><strong>Doctor ID:</strong> {{ data.PatientAppointedDoctorID }}</p>
+                <p><strong>Specialization:</strong> {{ data.DoctorSpecialization }}</p>
+            {% else %}
+                <p>No doctor appointed.</p>
+            {% endif %}
+        </div>
+
+        <div>
+            <h2>Medical Records</h2>
+            <p><strong>Prescription Name:</strong> {{ data.PatientPrescriptionName }}</p>
+            <p><strong>Prescription Date:</strong> {{ data.PatientPrescriptionDate }}</p>
+            <p><strong>Patient Records:</strong> {{ data.PatientRecords }}</p>
+        </div>
+
+        <div>
+            <h2>Billing Information</h2>
+            <p><strong>Billing Amount:</strong> {{ data.PatientBillingAmount }}</p>
+            <p><strong>Billing Date:</strong> {{ data.PatientBillingDate }}</p>
+            <p><strong>Invoice No:</strong> {{ data.PatientBillingInvoiceNo }}</p>
+        </div>
+    {% else %}
+        <p>No patient data found.</p>
+    {% endif %}
 </body>
 </html>

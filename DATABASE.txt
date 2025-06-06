@@ -1,0 +1,258 @@
+database name: userdb
+
+CREATE TABLE Users (
+    UserID        VARCHAR(50) PRIMARY KEY,
+    Username      VARCHAR(100) UNIQUE NOT NULL,
+    UserEmail     VARCHAR(150) UNIQUE NOT NULL,
+    UserPassword  VARCHAR(255) NOT NULL,
+    UserType      ENUM('Doctor', 'Patient') NOT NULL
+);
+
+-- Insert Doctor 1
+INSERT INTO Users (
+    UserID,
+    Username,
+    UserEmail,
+    UserPassword,
+    UserType
+) VALUES (
+    'U001',                            -- UserID
+    'dr.johnsmith',                    -- Username
+    'dr.johnsmith@email.com',           -- UserEmail
+    'hashed_password_123',             -- UserPassword (hashed)
+    'Doctor'                           -- UserType
+);
+
+-- Insert Patient 1
+INSERT INTO Users (
+    UserID,
+    Username,
+    UserEmail,
+    UserPassword,
+    UserType
+) VALUES (
+    'U002',                            -- UserID
+    'janedoe_patient',                 -- Username
+    'janedoe_patient@email.com',       -- UserEmail
+    'hashed_password_456',             -- UserPassword (hashed)
+    'Patient'                          -- UserType
+);
+
+-- Insert Doctor 2
+INSERT INTO Users (
+    UserID,
+    Username,
+    UserEmail,
+    UserPassword,
+    UserType
+) VALUES (
+    'U003',                            -- UserID
+    'dr.alicejohnson',                 -- Username
+    'dr.alicejohnson@email.com',       -- UserEmail
+    'hashed_password_789',             -- UserPassword (hashed)
+    'Doctor'                           -- UserType
+);
+
+-- Insert Patient 2
+INSERT INTO Users (
+    UserID,
+    Username,
+    UserEmail,
+    UserPassword,
+    UserType
+) VALUES (
+    'U004',                            -- UserID
+    'robertbrown_patient',             -- Username
+    'robertbrown_patient@email.com',   -- UserEmail
+    'hashed_password_101112',          -- UserPassword (hashed)
+    'Patient'                          -- UserType
+);
+
+-- Insert Patient 3
+INSERT INTO Users (
+    UserID,
+    Username,
+    UserEmail,
+    UserPassword,
+    UserType
+) VALUES (
+    'U005',                            -- UserID
+    'emilygreen_patient',              -- Username
+    'emilygreen_patient@email.com',    -- UserEmail
+    'hashed_password_131415',          -- UserPassword (hashed)
+    'Patient'                          -- UserType
+);
+
+
+CREATE TABLE Doctor (
+    DoctorID                 VARCHAR(50) PRIMARY KEY,         -- FK to Users(UserID)
+    DoctorProfilePic         VARCHAR(255),
+    DoctorFirstName          VARCHAR(100) NOT NULL,
+    DoctorLastName           VARCHAR(100),
+    DoctorPhone              VARCHAR(20) UNIQUE,
+    DoctorGender             VARCHAR(10),
+    DoctorDOB                DATE,
+    DoctorBio                TEXT,
+    DoctorClinicName         VARCHAR(150),
+    DoctorClinicAddress      TEXT,
+    DoctorImages             TEXT,
+    DoctorAddress1           VARCHAR(255),
+    DoctorAddress2           VARCHAR(255),
+    DoctorCity               VARCHAR(100),
+    DoctorState              VARCHAR(100),
+    DoctorCountry            VARCHAR(100),
+    DoctorPostalCode         VARCHAR(20),
+    DoctorFeePerHour         DECIMAL(10,2),
+    DoctorSpecialization     VARCHAR(255),
+    DoctorServices           TEXT,      -- comma-separated or JSON
+    DoctorDegreeName         VARCHAR(150),
+    DoctorCollege            VARCHAR(150),
+    DoctorYearOfCompletion   YEAR,
+    DoctorExperienceHospital VARCHAR(150),
+    DoctorExperienceFromYear YEAR,
+    DoctorExperienceToYear   YEAR,
+    DoctorExperienceDesignation VARCHAR(150),
+    DoctorAward              VARCHAR(150),
+    DoctorAwardYear          YEAR,
+    DoctorMemberships        TEXT,
+    DoctorRegistrations      TEXT,
+    DoctorRegistrationYear   YEAR,
+
+    FOREIGN KEY (DoctorID) REFERENCES Users(UserID) ON DELETE CASCADE
+);
+
+
+
+INSERT INTO Doctor (
+    DoctorID, DoctorProfilePic, 
+    DoctorFirstName, DoctorLastName, DoctorPhone, DoctorGender, DoctorDOB,
+    DoctorBio, DoctorClinicName, DoctorClinicAddress, DoctorImages, 
+    DoctorAddress1, DoctorAddress2, DoctorCity, DoctorState, DoctorCountry, 
+    DoctorPostalCode, DoctorFeePerHour, DoctorSpecialization, DoctorServices, 
+    DoctorDegreeName, DoctorCollege, DoctorYearOfCompletion, 
+    DoctorExperienceHospital, DoctorExperienceFromYear, DoctorExperienceToYear,
+    DoctorExperienceDesignation, DoctorAward, DoctorAwardYear, 
+    DoctorMemberships, DoctorRegistrations, DoctorRegistrationYear
+) 
+VALUES (
+    'U003', 'profile_pic.jpg',
+    'John', 'Doe', '123-456-7890', 'Male', '1980-01-01',
+    'Experienced cardiologist with 20 years in the field', 'City Hospital', '123 Main St, Citytown, Country', 'image1.jpg, image2.jpg',
+    '123 Clinic St', 'Apt 456', 'Citytown', 'Stateville', 'Countryland', 
+    '12345', 150.00, 'Cardiology', 'Consultation, ECG, Stress Test',
+    'MD in Cardiology', 'XYZ University', 2005, 
+    'City Heart Hospital', 2005, 2025, 'Senior Cardiologist', 
+    'Best Cardiologist Award', 2015, 
+    'American Heart Association', 'XYZ Medical Board', 2010
+);
+
+CREATE TABLE Patient (
+    PatientUserId                VARCHAR(50) PRIMARY KEY,                 -- FK from Users(UserID)
+    PatientProfilePic            VARCHAR(255),
+    PatientFirstName             VARCHAR(100) NOT NULL,
+    PatientLastName              VARCHAR(100),
+    PatientDOB                   DATE,
+    PatientBloodGroup            VARCHAR(5),
+    PatientMobile                VARCHAR(20) UNIQUE,
+    PatientAddress               TEXT,
+    PatientCity                  VARCHAR(100),
+    PatientState                 VARCHAR(100),
+    PatientZipCode               VARCHAR(20),
+    PatientCountry               VARCHAR(100),
+
+    PatientAppointedDoctorID     VARCHAR(50),                             -- FK from Doctor(DoctorID)
+
+    PatientPrescriptionName      VARCHAR(255),
+    PatientPrescriptionDate      DATE,
+    PatientAppointmentDate       DATE,
+    PatientPrescriptionDoctorName VARCHAR(150),
+    PatientRecords               TEXT,
+
+    PatientBillingDoctorName     VARCHAR(150),
+    PatientBillingAmount         DECIMAL(10,2),
+    PatientBillingDate           DATE,
+    PatientBillingInvoiceNo      VARCHAR(50),
+
+    FOREIGN KEY (PatientUserId) REFERENCES Users(UserID) ON DELETE CASCADE,
+    FOREIGN KEY (PatientAppointedDoctorID) REFERENCES Doctor(DoctorID) ON DELETE SET NULL
+);
+
+INSERT INTO Patient (
+    PatientUserId, PatientProfilePic, PatientFirstName, PatientLastName, PatientDOB, 
+    PatientBloodGroup, PatientMobile, PatientAddress, PatientCity, PatientState, PatientZipCode, 
+    PatientCountry, PatientAppointedDoctorID, PatientPrescriptionName, 
+    PatientPrescriptionDate, PatientPrescriptionDoctorName, PatientRecords, 
+    PatientBillingDoctorName, PatientBillingAmount, PatientBillingDate, PatientBillingInvoiceNo, PatientAppointmentDate
+)
+VALUES (
+    'U004', 'patient_profile_pic.jpg', 'robert', 'Singh', '1992-07-15', 
+    'O+', '555-123-4567', '456 Oak St, Apartment 789', 'Metropolis', 'Stateville', '98765', 
+    'Countryland', 'U003', 'Blood Pressure Medicine', '2025-06-01', 
+    'Dr. John Doe', 'Medical Records for Blood Pressure Treatment', 
+    'Dr. John Doe', 200.00, '2025-06-01', 'INV12345', '2025-07-15'
+);
+
+
+
+Patient Table
+
+PatientUserId
+PatientProfilePic
+PatientUsername
+PatientFirstName
+PatientLastName
+PatientDOB
+PatientBloodGroup
+PatientMobile
+PatientAddress
+PatientCity
+PatientState
+PatientZipCode
+PatientCountry
+PatientAppointedDoctorName
+PatientAppointedDoctorID
+PatientPrescriptionName
+PatientPrescriptionDate
+PatientPrescriptionDoctorName
+PatientRecords
+PatientBillingDoctorName
+PatientBillingAmount
+PatientBillingDate
+PatientBillingInvoiceNo
+
+DoctorProfilePic
+DoctorID
+DoctorUsename
+DoctorEmail
+DoctorFirstName
+DoctorLastName
+DoctorPassword
+DoctorPhone
+DoctorGender
+DoctorDOB
+DoctorBio
+DoctorClinicName
+DoctorClinicAddress
+DoctorImages
+DoctorAddress1
+DoctorAddress2
+DoctorCity
+DoctorState
+DoctorCountry
+DoctorPostalCode
+DoctorFeePerHour
+DoctorSpecialization
+DoctorServices
+DoctorDegreeName
+DoctorCollege
+DoctorYearOfCompletion
+DoctorExperienceHospital
+DoctorExperienceFromYear
+DoctorExperienceToYear
+DoctorExperienceDesignation
+DoctorAward
+DoctorAwardYear
+DoctorMemberships
+DoctorRegistrations
+DoctorRegistrationYear
+
