@@ -55,7 +55,7 @@
 					</a>
 					<a href="index-2.html" class="navbar-brand logo">
 
-						<img src="../static/assets/img/AI_logo.png" class="img-fluid" alt="Logo" height="60px" width="60px">
+						<img src="assets/img/AI_logo.png" class="img-fluid" alt="Logo" height="60px" width="60px">
 					</a>
 				</div>
 				<div class="main-menu-wrapper">
@@ -88,18 +88,20 @@
 					<li class="nav-item dropdown has-arrow logged-item">
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img">
-								<img class="rounded-circle" src="assets/img/doctors/doctor-thumb-02.jpg" width="31"
+								<img class="rounded-circle" src="{{ url_for('dashboard.uploaded_image', filename=doctor.DoctorProfilePic) }}
+" width="31"
 									alt="Darren Elder">
 							</span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right">
 							<div class="user-header">
 								<div class="avatar avatar-sm">
-									<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image"
+									<img src="{{ url_for('dashboard.uploaded_image', filename=doctor.DoctorProfilePic) }}
+" alt="User Image"
 										class="avatar-img rounded-circle">
 								</div>
 								<div class="user-text">
-									<h6>Darren Elder</h6>
+									<h6>{{ doctor.DoctorFirstName if doctor else '' }}</h6>
 									<p class="text-muted mb-0">Doctor</p>
 								</div>
 							</div>
@@ -129,13 +131,14 @@
 							<div class="widget-profile pro-widget-content">
 								<div class="profile-info-widget">
 									<a href="#" class="booking-doc-img">
-										<img src="assets/img/doctors/doctor-thumb-02.jpg" alt="User Image">
+										<img src="{{ url_for('dashboard.uploaded_image', filename=doctor.DoctorProfilePic) }}
+" alt="User Image">
 									</a>
 									<div class="profile-det-info">
-										<h3>Dr. Darren Elder</h3>
+										<h3>{{ doctor.DoctorFirstName}} {{ doctor.DoctorLastName}}</h3>
 
 										<div class="patient-details">
-											<h5 class="mb-0">BDS, MDS - Oral & Maxillofacial Surgery</h5>
+											<h5 class="mb-0">{{doctor.DoctorBio}}</h5>
 										</div>
 									</div>
 								</div>
@@ -144,8 +147,8 @@
 								<nav class="dashboard-menu">
 									<ul>
 										<li class="active">
-											<!-- <a href="{{ url_for('dashboard') }}"> -->
-											<a href="doctor-dashboard.html">
+											
+											<a href="/show?id={{ doctor.DoctorID }}">
 												<i class="fas fa-columns"></i>
 												<span>Dashboard</span>
 											</a>
@@ -194,7 +197,8 @@
 											<div class="form-group">
 												<div class="change-avatar">
 													<div class="profile-img">
-														<img src="{{ url_for('uploaded_image', filename=doctor.DoctorProfilePic) }}"
+														<img src="{{ url_for('dashboard.uploaded_image', filename=doctor.DoctorProfilePic) }}
+"
 															alt="User Image">
 													</div>
 													<div class="upload-img">
@@ -245,7 +249,7 @@
 											<div class="form-group">
 												<label>Username <span class="text-danger">*</span></label>
 												<input name="DoctorUsename"
-													value="{{ doctor.DoctorUsename if doctor else '' }}" type="text"
+													value="{{ user.Username }}" type="text"
 													class="form-control" readonly>
 											</div>
 										</div>
@@ -253,7 +257,7 @@
 											<div class="form-group">
 												<label>Email <span class="text-danger">*</span></label>
 												<input name="DoctorEmail" type="email"
-													value="{{ doctor.DoctorEmail if doctor else '' }}" type="email"
+													value="{{ user.UserEmail }}" type="email"
 													class="form-control" readonly>
 											</div>
 										</div>

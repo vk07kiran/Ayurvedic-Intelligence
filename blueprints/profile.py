@@ -1,118 +1,87 @@
-from flask import Flask, request, render_template, redirect, url_for
+from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory
 import mysql.connector
-import uuid
-import os
+import os, time, uuid
 from werkzeug.utils import secure_filename
-from flask import send_from_directory
-import time
 
+profile_bp = Blueprint('profile', __name__)
 
-app = Flask(__name__, template_folder='../templates', static_folder='../static/assets')
-
-# Configuration
-db_config = {
-    'host': 'localhost',
-    'user': 'root',
-    'password': '',
-    'database': 'userdb'
-}
-
-ALLOWED_EXTENSIONS = {'jpg', 'jpeg','png'}
 IMAGE_UPLOAD_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '../Images'))
 
-
-# Helper: Check if file is allowed
 def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'jpg', 'jpeg', 'png'}
 
-# Helper: DB Connection
 def get_db_connection():
-    return mysql.connector.connect(**db_config)
+    return mysql.connector.connect(
+        host='localhost', user='root', password='', database='userdb'
+    )
 
-@app.route('/Images/<filename>')
-def uploaded_image(filename):
-    return send_from_directory(IMAGE_UPLOAD_FOLDER, filename)
+@profile_bp.route('/editprofile')
+def edit_profile():
+    doctor_id = request.args.get('id', '').strip()
+    if not doctor_id:
+        return "<h3 style='color:red;'>Doctor ID not provided in URL.</h3>", 400
 
-# Route: Doctor Profile Form
-@app.route('/', methods=['GET'])
-def index():
-    doctor_id = request.args.get('id')  # e.g. ?id=some-uuid
-    doctor = {}
+    conn = get_db_connection()
+    cursor = conn.cursor(dictionary=True)
+    cursor.execute("SELECT * FROM Doctor WHERE DoctorID = %s", (doctor_id,))
+    doctor = cursor.fetchone()
+    cursor.execute("SELECT * FROM Users WHERE UserID = %s", (doctor_id,))
+    user = cursor.fetchone()
+    cursor.close()
+    conn.close()
 
-    if doctor_id:
-        conn = get_db_connection()
-        cursor = conn.cursor(dictionary=True)
-        cursor.execute("SELECT * FROM Doctor WHERE DoctorID = %s", (doctor_id,))
-        doctor = cursor.fetchone()
-        cursor.close()
-        conn.close()
+    return render_template('doctor-profile-settings.html', doctor=doctor, user=user)
 
-    return render_template('doctor-profile-settings.html', doctor=doctor)
-
-@app.route('/submit', methods=['POST'])
+@profile_bp.route('/submit', methods=['POST'])
 def submit_doctor():
     data = request.form.to_dict()
     doctor_id = data.get('DoctorID') or str(uuid.uuid4())
 
-    # Connect to DB and fetch existing profile pic filename if doctor exists
-    existing_profile_pic = ""
     conn = get_db_connection()
     cursor = conn.cursor()
-    if doctor_id:
-        cursor.execute("SELECT DoctorProfilePic FROM Doctor WHERE DoctorID = %s", (doctor_id,))
-        row = cursor.fetchone()
-        if row:
-            existing_profile_pic = row[0]
-    cursor.close()
-    conn.close()
 
-    # === Handle DoctorProfilePic Upload ===
+    cursor.execute("SELECT DoctorProfilePic FROM Doctor WHERE DoctorID = %s", (doctor_id,))
+    row = cursor.fetchone()
+    existing_profile_pic = row[0] if row else ""
+
     profile_pic = request.files.get("DoctorProfilePic")
-    profile_pic_filename = existing_profile_pic  # default to existing
+    profile_pic_filename = existing_profile_pic
 
-    if profile_pic and allowed_file(profile_pic.filename) and profile_pic.filename != '':
+    if profile_pic and allowed_file(profile_pic.filename):
         ext = profile_pic.filename.rsplit('.', 1)[1].lower()
-        timestamp = int(time.time() * 1000)  # current time in ms
+        timestamp = int(time.time() * 1000)
         new_filename = f"profile_pic_{timestamp}.{ext}"
         secure_name = secure_filename(new_filename)
-
         if not os.path.exists(IMAGE_UPLOAD_FOLDER):
             os.makedirs(IMAGE_UPLOAD_FOLDER)
-
-        save_path = os.path.join(IMAGE_UPLOAD_FOLDER, secure_name)
-        profile_pic.save(save_path)
+        profile_pic.save(os.path.join(IMAGE_UPLOAD_FOLDER, secure_name))
         profile_pic_filename = secure_name
 
     data['DoctorProfilePic'] = profile_pic_filename
 
-    # === Handle DoctorImages Upload (multiple files) ===
     uploaded_images = request.files.getlist("DoctorImages")
     saved_image_filenames = []
-
     for file in uploaded_images:
         if file and allowed_file(file.filename):
             ext = file.filename.rsplit('.', 1)[1].lower()
-            timestamp = int(time.time() * 1000)  # current time in milliseconds
-            new_filename = f"image_{timestamp}.{ext}"
-            secure_name = secure_filename(new_filename)
+            timestamp = int(time.time() * 1000)
+            filename = f"image_{timestamp}.{ext}"
+            secure_name = secure_filename(filename)
             file.save(os.path.join(IMAGE_UPLOAD_FOLDER, secure_name))
             saved_image_filenames.append(secure_name)
 
     data['DoctorImages'] = ','.join(saved_image_filenames)
 
-    conn = get_db_connection()
-    cursor = conn.cursor()
-
-    # Check if the doctor already exists
     cursor.execute("SELECT DoctorID FROM Doctor WHERE DoctorID = %s", (doctor_id,))
     exists = cursor.fetchone()
 
     try:
         if exists:
+            # Placeholder for update query
             # Update existing record
             query = """
             UPDATE Doctor SET
-                DoctorProfilePic=%s, DoctorUsename=%s, DoctorEmail=%s, DoctorFirstName=%s, DoctorLastName=%s,
+                DoctorProfilePic=%s, DoctorFirstName=%s, DoctorLastName=%s,
                 DoctorPhone=%s, DoctorGender=%s, DoctorDOB=%s, DoctorBio=%s,
                 DoctorClinicName=%s, DoctorClinicAddress=%s, DoctorImages=%s,
                 DoctorAddress1=%s, DoctorAddress2=%s, DoctorCity=%s, DoctorState=%s,
@@ -124,7 +93,7 @@ def submit_doctor():
             WHERE DoctorID = %s
             """
             values = (
-                data.get('DoctorProfilePic'), data.get('DoctorUsename'), data.get('DoctorEmail'),
+                data.get('DoctorProfilePic'),
                 data.get('DoctorFirstName'), data.get('DoctorLastName'), data.get('DoctorPhone'),
                 data.get('DoctorGender'), data.get('DoctorDOB'), data.get('DoctorBio'),
                 data.get('DoctorClinicName'), data.get('DoctorClinicAddress'), data.get('DoctorImages'),
@@ -137,11 +106,13 @@ def submit_doctor():
                 data.get('DoctorAward'), data.get('DoctorAwardYear'), data.get('DoctorMemberships'),
                 data.get('DoctorRegistrations'), data.get('DoctorRegistrationYear'), doctor_id
             )
+            pass
         else:
+            # Placeholder for insert query
             # Insert new doctor record
             query = """
             INSERT INTO Doctor (
-                DoctorProfilePic, DoctorID, DoctorUsename, DoctorEmail, DoctorFirstName, DoctorLastName,
+                DoctorProfilePic, DoctorID, DoctorFirstName, DoctorLastName,
                 DoctorPhone, DoctorGender, DoctorDOB, DoctorBio, DoctorClinicName,
                 DoctorClinicAddress, DoctorImages, DoctorAddress1, DoctorAddress2, DoctorCity,
                 DoctorState, DoctorCountry, DoctorPostalCode, DoctorFeePerHour, DoctorSpecialization,
@@ -153,7 +124,7 @@ def submit_doctor():
                       %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
             """
             values = (
-                data.get('DoctorProfilePic'), doctor_id, data.get('DoctorUsename'), data.get('DoctorEmail'),
+                data.get('DoctorProfilePic'), doctor_id,
                 data.get('DoctorFirstName'), data.get('DoctorLastName'), data.get('DoctorPhone'),
                 data.get('DoctorGender'), data.get('DoctorDOB'), data.get('DoctorBio'),
                 data.get('DoctorClinicName'), data.get('DoctorClinicAddress'), data.get('DoctorImages'),
@@ -169,21 +140,12 @@ def submit_doctor():
 
         cursor.execute(query, values)
         conn.commit()
-
+        pass
+        
     except Exception as e:
         print("Database Error:", e)
     finally:
         cursor.close()
         conn.close()
 
-    return redirect(url_for('index', id=doctor_id))
-
-
-# @app.route('/dashboard')
-# def dashboard():
-#      return render_template('doctor-dashboard.html')
-
-# Start Flask app
-if __name__ == '__main__':
-    app.run(debug=True)
-    
+    return redirect(url_for('profile.edit_profile', id=doctor_id))

@@ -117,6 +117,7 @@ CREATE TABLE Doctor (
     DoctorMemberships        TEXT,
     DoctorRegistrations      TEXT,
     DoctorRegistrationYear   YEAR,
+    AppointedByUser	     VARCHAR(50),
 
     FOREIGN KEY (DoctorID) REFERENCES Users(UserID) ON DELETE CASCADE
 );
@@ -132,7 +133,7 @@ INSERT INTO Doctor (
     DoctorDegreeName, DoctorCollege, DoctorYearOfCompletion, 
     DoctorExperienceHospital, DoctorExperienceFromYear, DoctorExperienceToYear,
     DoctorExperienceDesignation, DoctorAward, DoctorAwardYear, 
-    DoctorMemberships, DoctorRegistrations, DoctorRegistrationYear
+    DoctorMemberships, DoctorRegistrations, DoctorRegistrationYear, AppointedByUser
 ) 
 VALUES (
     'U003', 'profile_pic.jpg',
@@ -143,7 +144,7 @@ VALUES (
     'MD in Cardiology', 'XYZ University', 2005, 
     'City Heart Hospital', 2005, 2025, 'Senior Cardiologist', 
     'Best Cardiologist Award', 2015, 
-    'American Heart Association', 'XYZ Medical Board', 2010
+    'American Heart Association', 'XYZ Medical Board', 2010, U004
 );
 
 CREATE TABLE Patient (
