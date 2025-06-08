@@ -15,7 +15,7 @@ IMAGE_UPLOAD_FOLDER = os.path.abspath(os.path.join(os.path.dirname(__file__), '.
 def uploaded_image(filename):
     return send_from_directory(IMAGE_UPLOAD_FOLDER, filename)
 
-@dashboard_bp.route('/show')
+@dashboard_bp.route('/dashboard')
 @dashboard_bp.route('/dashboard')
 def show_doctor():
     doctor_id = request.args.get('id', '').strip()

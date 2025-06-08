@@ -1,6 +1,8 @@
-from flask import Flask
+from flask import Flask, redirect, url_for
 from blueprints.dashboard import dashboard_bp
 from blueprints.profile import profile_bp
+from blueprints.login import login_bp
+from blueprints.signup import signup_bp
 import os
 
 app = Flask(
@@ -19,9 +21,19 @@ app.config['DB_CONFIG'] = {
     'database': 'userdb'
 }
 
+# Generate a strong random secret key
+app.secret_key = os.urandom(24)
+
 # Register Blueprints
+app.register_blueprint(login_bp)
+app.register_blueprint(signup_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(profile_bp)
+
+# Default route: Redirect to login
+@app.route('/')
+def index():
+    return redirect(url_for('login.login'))  # login = blueprint name
 
 # Start the Flask app
 if __name__ == '__main__':
