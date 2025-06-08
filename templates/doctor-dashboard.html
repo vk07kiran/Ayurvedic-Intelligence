@@ -73,16 +73,14 @@
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img">
 								<img class="rounded-circle" src="{{ url_for('dashboard.uploaded_image', filename=doctor.DoctorProfilePic) }}
-" width="31"
-									alt="{{ doctor.DoctorFirstName }} {{ doctor.DoctorLastName }}">
+" width="31" alt="{{ doctor.DoctorFirstName }} {{ doctor.DoctorLastName }}">
 							</span>
 						</a>
 						<div class="dropdown-menu dropdown-menu-right">
 							<div class="user-header">
 								<div class="avatar avatar-sm">
 									<img src="{{ url_for('dashboard.uploaded_image', filename=doctor.DoctorProfilePic) }}
-" alt="User Image"
-										class="avatar-img rounded-circle">
+" alt="User Image" class="avatar-img rounded-circle">
 								</div>
 								<div class="user-text">
 									<h6>{{ doctor.DoctorFirstName }} {{ doctor.DoctorLastName }}</h6>
@@ -120,7 +118,7 @@
 
 
 
-										 
+
 										<h3><strong>{{ doctor.DoctorFirstName }} {{ doctor.DoctorLastName }}</strong>
 										</h3>
 
@@ -128,7 +126,7 @@
 											<h5 class="mb-0">{{ doctor.DoctorBio }}</h5>
 										</div>
 									</div>
-									 
+
 								</div>
 							</div>
 							<div class="dashboard-widget">
@@ -273,14 +271,18 @@
 																					class="avatar-img rounded-circle"
 																					src="{{patient.PatientProfilePic}}"
 																					alt="User Image"></a>
-																			<a href="patient-profile.html">{{ patient.PatientFirstName }} {{ patient.PatientLastName }}<span>{{patient.PatientUserId}}</span></a>
+																			<a href="patient-profile.html">{{
+																				patient.PatientFirstName }} {{
+																				patient.PatientLastName
+																				}}<span>{{patient.PatientUserId}}</span></a>
 																		</h2>
 																	</td>
 																	<td>{{patient.PatientAppointmentDate}}
 																	</td>
 																	<td>General</td>
 																	<td>New Patient</td>
-																	<td class="text-center"> {{ patient.PatientBillingAmount}}</td>
+																	<td class="text-center"> {{
+																		patient.PatientBillingAmount}}</td>
 																	<td class="text-right">
 																		<div class="table-action">
 																			<a href="javascript:void(0);"
