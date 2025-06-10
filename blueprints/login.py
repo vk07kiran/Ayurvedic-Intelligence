@@ -41,8 +41,9 @@ def login():
             session['username'] = user['Username']
 
             # Check if the user is a doctor
-            cursor.execute("SELECT * FROM Users WHERE UserID = %s", (user['UserID'],))
+            cursor.execute("SELECT * FROM Users WHERE UserID = %s AND UserType= 'Doctor' ", (user['UserID'],))
             doctor = cursor.fetchone()
+            patient = cursor.fetchone()
 
             cursor.close()
             conn.close()
@@ -50,9 +51,10 @@ def login():
             if doctor:
                 # Redirect to doctor dashboard
                 return redirect(url_for('dashboard.show_doctor', id=doctor['UserID']))
+            
             else:
-                flash('No doctor profile found for this user.', 'error')
-                return redirect(url_for('login.login'))
+                return redirect(url_for('landing.landing_page'))
+                
         else:
             cursor.close()
             conn.close()

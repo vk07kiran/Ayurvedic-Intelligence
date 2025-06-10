@@ -3,6 +3,7 @@ from blueprints.dashboard import dashboard_bp
 from blueprints.profile import profile_bp
 from blueprints.login import login_bp
 from blueprints.signup import signup_bp
+from blueprints.LandingPage import landing_bp
 import os
 
 app = Flask(
@@ -29,6 +30,7 @@ app.register_blueprint(login_bp)
 app.register_blueprint(signup_bp)
 app.register_blueprint(dashboard_bp)
 app.register_blueprint(profile_bp)
+app.register_blueprint(landing_bp)
 
 # Default route: Redirect to login
 @app.route('/')
