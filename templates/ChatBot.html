@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Database</title>
+    <style>
+        #loading {
+            display: none;
+            font-size: 20px;
+            font-weight: bold;
+            color: #030405;
+        }
+    </style>
+</head>
+<body>
+    <h1>Welcome to the Plant Database AI Chatbot</h1>
+    
+    <form id="questionForm">
+        <label for="question">Ask a question about medicinal plants:</label>
+        <br><br>
+        <input type="text" id="question" name="question" required style="width: 800px;">
+        <button type="submit">Ask</button>
+    </form>
+
+    <br><br>
+    <div id="loading">Thinking...</div>
+    <div id="answer"></div>
+
+    <script>
+        document.getElementById('questionForm').addEventListener('submit', async function(e) {
+            e.preventDefault(); // Prevent form submission
+
+            const question = document.getElementById('question').value;
+            const answerDiv = document.getElementById('answer');
+            const loadingDiv = document.getElementById('loading');
+
+            // Show loading indicator
+            loadingDiv.style.display = 'block';
+            answerDiv.innerHTML = ''; // Clear previous answers
+
+            try {
+                // Send the question to the server via POST request
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ question: question })
+                });
+
+                if (!response.ok) {
+                    throw new Error('Error fetching the answer');
+                }
+
+                const data = await response.json();
+                answerDiv.innerHTML = data.answer || 'Sorry, I could not find an answer for that.';
+            } catch (error) {
+                answerDiv.innerHTML = 'An error occurred. Please try again later.';
+            } finally {
+                // Hide loading indicator once data is fetched
+                loadingDiv.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>

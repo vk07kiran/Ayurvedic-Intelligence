@@ -16,3 +16,4 @@ def get_db_connection():
 @landing_bp.route('/landing')
 def landing_page():
     return render_template('LandingPage.html')
+
