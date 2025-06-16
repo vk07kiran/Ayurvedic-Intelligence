@@ -5,6 +5,7 @@ from blueprints.login import login_bp
 from blueprints.signup import signup_bp
 from blueprints.LandingPage import landing_bp
 from blueprints.ChatbotMain import chatbotmain_bp
+from blueprints.HomePage import homepage_bp
 
 import os
 
@@ -34,6 +35,7 @@ app.register_blueprint(dashboard_bp)
 app.register_blueprint(profile_bp)
 app.register_blueprint(landing_bp)
 app.register_blueprint(chatbotmain_bp)
+app.register_blueprint(homepage_bp)
 
 # Default route: Redirect to login
 @app.route('/')

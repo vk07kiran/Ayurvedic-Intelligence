@@ -1,67 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plant Database</title>
-    <style>
-        #loading {
-            display: none;
-            font-size: 20px;
-            font-weight: bold;
-            color: #030405;
-        }
-    </style>
-</head>
-<body>
-    <h1>Welcome to the Plant Database AI Chatbot</h1>
-    
-    <form id="questionForm">
-        <label for="question">Ask a question about medicinal plants:</label>
-        <br><br>
-        <input type="text" id="question" name="question" required style="width: 800px;">
-        <button type="submit">Ask</button>
-    </form>
 
-    <br><br>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Plant Chat</title>
+  <link rel="stylesheet" href="assets/css/ChatbotCss.css" />
+   <link rel="stylesheet" href="assets/css/HomePage.css" />
+  <style>
+    #loading {
+      display: none;
+      font-size: 18px;
+      font-weight: bold;
+      color: black;
+      margin-top: 20px;
+    }
+
+    #answer {
+      margin-top: 10px;
+      font-size: 18px;
+      font-weight: bold;
+      color: black;
+      margin-top: 20px;
+    }
+
+    .chat-output-container {
+      padding: 0 30px;
+      margin-bottom: 150px;
+    }
+  </style>
+</head>
+
+<body>
+   <header class="header">
+            <div class="logo">
+                <a href="/homepage">
+                <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60px" width="60px" >
+            </a>
+            </div>
+    
+            <nav class="navbar">
+               <a href="/homepage"> Home</a>
+                <a href="#features"> </a>
+                <a href="#about"> </a>
+                <a href="#footer"> </a>
+                <a href="/login" class="btn">Log out</a>
+            </nav>
+    
+            <div class="fas fa-bars" id="menu-btn"></div>
+        </header>
+
+<br><br><br><br><br><br>
+
+<main class="main-content">
+  <h1>AI Chat</h1>
+  <p class="subtext">
+    Explore the traditional wisdom and scientific insights of medicinal plants with your smart assistant.<br><br>
+    <strong>Try asking:</strong><br> 
+    Is ashwagandha good for anxiety?
+  </p>
+</main>
+
+
+
+  <div class="chat-output-container">
     <div id="loading">Thinking...</div>
     <div id="answer"></div>
+  </div>
 
-    <script>
-        document.getElementById('questionForm').addEventListener('submit', async function(e) {
-            e.preventDefault(); // Prevent form submission
+  <form id="questionForm">
+    <footer class="chat-input-container">
+      <input type="text" id="question" name="question" required placeholder="Message AI Chat..." />
+      <div class="chat-tools">
+        <button title="Image" ><span style="color: black;">Image Upload Coming Soon</span></button>
+        <button type="submit" title="Send" class="send"><span> Ask ⬆️</span></button>
+      </div>
+    </footer>
+  </form>
 
-            const question = document.getElementById('question').value;
-            const answerDiv = document.getElementById('answer');
-            const loadingDiv = document.getElementById('loading');
+  <script>
+    document.getElementById('questionForm').addEventListener('submit', async function (e) {
+      e.preventDefault();
 
-            // Show loading indicator
-            loadingDiv.style.display = 'block';
-            answerDiv.innerHTML = ''; // Clear previous answers
+      const question = document.getElementById('question').value;
+      const answerDiv = document.getElementById('answer');
+      const loadingDiv = document.getElementById('loading');
 
-            try {
-                // Send the question to the server via POST request
-                const response = await fetch('/ask', {
-                    method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify({ question: question })
-                });
+      loadingDiv.style.display = 'block';
+      answerDiv.innerHTML = '';
 
-                if (!response.ok) {
-                    throw new Error('Error fetching the answer');
-                }
-
-                const data = await response.json();
-                answerDiv.innerHTML = data.answer || 'Sorry, I could not find an answer for that.';
-            } catch (error) {
-                answerDiv.innerHTML = 'An error occurred. Please try again later.';
-            } finally {
-                // Hide loading indicator once data is fetched
-                loadingDiv.style.display = 'none';
-            }
+      try {
+        const response = await fetch('/ask', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ question })
         });
-    </script>
+
+        if (!response.ok) throw new Error('Error fetching the answer');
+
+        const data = await response.json();
+        answerDiv.innerHTML = `<p>${data.answer || 'Sorry, I could not find an answer for that.'}</p>`;
+      } catch (error) {
+        answerDiv.innerHTML = '<p>An error occurred. Please try again later.</p>';
+      } finally {
+        loadingDiv.style.display = 'none';
+      }
+    });
+  </script>
 </body>
+
 </html>

@@ -8,3 +8,18 @@ git commit -m "Update By Kiran"
 git push
 
 kiran
+
+
+
+
+
+git init
+git add .
+git status
+git commit -m "ProjectVIII"
+git config --global user.email ""
+git config --global user.name ""
+git commit -m "ProjectVIII"
+git branch -M main
+git remote add origin https://github.com/vk07kiran/Ayurvedic-Intelligence.git
+git push -u origin main

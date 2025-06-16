@@ -124,28 +124,7 @@ CREATE TABLE Doctor (
 
 
 
-INSERT INTO Doctor (
-    DoctorID, DoctorProfilePic, 
-    DoctorFirstName, DoctorLastName, DoctorPhone, DoctorGender, DoctorDOB,
-    DoctorBio, DoctorClinicName, DoctorClinicAddress, DoctorImages, 
-    DoctorAddress1, DoctorAddress2, DoctorCity, DoctorState, DoctorCountry, 
-    DoctorPostalCode, DoctorFeePerHour, DoctorSpecialization, DoctorServices, 
-    DoctorDegreeName, DoctorCollege, DoctorYearOfCompletion, 
-    DoctorExperienceHospital, DoctorExperienceFromYear, DoctorExperienceToYear,
-    DoctorExperienceDesignation, DoctorAward, DoctorAwardYear, 
-    DoctorMemberships, DoctorRegistrations, DoctorRegistrationYear, AppointedByUser
-) 
-VALUES (
-    'U003', 'profile_pic.jpg',
-    'John', 'Doe', '123-456-7890', 'Male', '1980-01-01',
-    'Experienced cardiologist with 20 years in the field', 'City Hospital', '123 Main St, Citytown, Country', 'image1.jpg, image2.jpg',
-    '123 Clinic St', 'Apt 456', 'Citytown', 'Stateville', 'Countryland', 
-    '12345', 150.00, 'Cardiology', 'Consultation, ECG, Stress Test',
-    'MD in Cardiology', 'XYZ University', 2005, 
-    'City Heart Hospital', 2005, 2025, 'Senior Cardiologist', 
-    'Best Cardiologist Award', 2015, 
-    'American Heart Association', 'XYZ Medical Board', 2010, U004
-);
+
 
 CREATE TABLE Patient (
     PatientUserId                VARCHAR(50) PRIMARY KEY,                 -- FK from Users(UserID)
@@ -178,20 +157,7 @@ CREATE TABLE Patient (
     FOREIGN KEY (PatientAppointedDoctorID) REFERENCES Doctor(DoctorID) ON DELETE SET NULL
 );
 
-INSERT INTO Patient (
-    PatientUserId, PatientProfilePic, PatientFirstName, PatientLastName, PatientDOB, 
-    PatientBloodGroup, PatientMobile, PatientAddress, PatientCity, PatientState, PatientZipCode, 
-    PatientCountry, PatientAppointedDoctorID, PatientPrescriptionName, 
-    PatientPrescriptionDate, PatientPrescriptionDoctorName, PatientRecords, 
-    PatientBillingDoctorName, PatientBillingAmount, PatientBillingDate, PatientBillingInvoiceNo, PatientAppointmentDate
-)
-VALUES (
-    'U004', 'patient_profile_pic.jpg', 'robert', 'Singh', '1992-07-15', 
-    'O+', '555-123-4567', '456 Oak St, Apartment 789', 'Metropolis', 'Stateville', '98765', 
-    'Countryland', 'U003', 'Blood Pressure Medicine', '2025-06-01', 
-    'Dr. John Doe', 'Medical Records for Blood Pressure Treatment', 
-    'Dr. John Doe', 200.00, '2025-06-01', 'INV12345', '2025-07-15'
-);
+
 
 
 

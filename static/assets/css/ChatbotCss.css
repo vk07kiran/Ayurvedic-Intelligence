@@ -1,0 +1,143 @@
+/* Reset and body setup */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: white;
+  color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navigation */
+.top-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 40px;
+  background-color: white;
+  position: sticky;
+  top: 0;
+}
+
+.top-nav nav a {
+  margin-right: 20px;
+  color: #aaa;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.top-nav nav a:hover {
+  color:black;
+}
+
+.new-chat {
+  background: white;
+  color: black;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+/* Main content */
+.main-content {
+  text-align: center;
+  padding: 60px 20px 120px;
+}
+
+.main-content h1 {
+  font-size: 36px;
+  margin-bottom: 16px;
+}
+
+.subtext {
+  font-size: 18px;
+  color: black;
+  margin-bottom: 30px;
+}
+
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+.tags button {
+  background-color: white;
+  color: black;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 20px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+
+.tags button:hover {
+  background-color: #444456;
+}
+
+/* Footer / Chat input */
+.chat-input-container {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #1a1a2f;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px solid #2d2d4f;
+}
+
+.chat-input-container input[type="text"] {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 16px;
+  margin-right: 12px;
+  background: white;
+  color: black;
+}
+
+.chat-tools {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.chat-tools select {
+  background: white;
+  color: black;
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: none;
+}
+
+.chat-tools button {
+  background: white;
+  color: black;
+  border: none;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.chat-tools .send {
+  background: white;
+}
+
+.chat-tools .send:hover {
+  background: white;
+}
