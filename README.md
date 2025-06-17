@@ -21,5 +21,3 @@ In order to run HerbScanner, it requires tensorflow but it is not supported by p
   - `pip install tensorflow`
   - `deactivate`
   - `rmdir /s /q myenv`
-
-2. edited by unknown guy
