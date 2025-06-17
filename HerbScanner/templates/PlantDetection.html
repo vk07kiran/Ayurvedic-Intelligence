@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Herb Scanner</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+            background: #fff;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 30px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        input[type="file"] {
+            margin-bottom: 20px;
+        }
+
+        input[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result {
+            margin-top: 30px;
+            background-color: #e7f9ed;
+            border-left: 6px solid #4CAF50;
+            padding: 20px;
+            border-radius: 8px;
+        }
+
+        .result h2 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .result p {
+            margin: 8px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌿 Herb Scanner</h1>
+        <form method="POST" action="/scan" enctype="multipart/form-data">
+            <input type="file" name="image" accept="image/*" required>
+            <input type="submit" value="Scan">
+        </form>
+
+        {% if herb %}
+        <div class="result">
+            <h2>Scan Result</h2>
+            <p><strong>🌱 Identified Herb:</strong> {{ herb }}</p>
+            <p><strong>📖 Information:</strong> {{ info }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+
+Flask
+wikipedia
+google-api-python-client
+Pillow
