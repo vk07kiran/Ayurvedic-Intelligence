@@ -6,6 +6,6 @@ pandas
 numpy
 werkzeug
 mysql-connector-python
-os
 time
 uuid
+langchain_ollama
