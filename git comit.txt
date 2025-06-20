@@ -2,6 +2,9 @@
 
 ## IF you have already cloned the repo 'C:\Users\username\Desktop\Ayurvedic Intelligence' then,
 
+git pull origin main
+
+
 git status
 git add .
 git commit -m "Update By Kiran"
