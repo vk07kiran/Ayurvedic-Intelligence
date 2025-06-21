@@ -140,9 +140,16 @@
         <br><br><br>
         <div class="plant-info">
           <h3>Plant Information</h3>
-          <p><strong>Name:</strong> {{ result }}</p>
-          <p><strong>Usage:</strong> Coming soon...</p>
-          <p><strong>Places Found:</strong> Coming Soon...</p>
+          <p><strong>Name:</strong> {{ plant_name }}</p>
+          {% if scientific %}
+          <p><strong>Scientific Name:</strong> {{ scientific }}</p>
+          <p><strong>Usage:</strong> {{ usage }}</p>
+          <p><strong>Parts Used:</strong> {{ parts }}</p>
+          <p><strong>Region in Nepal:</strong> {{ region }}</p>
+          {% else %}
+          <p>No Information</p>
+          {% endif %}
+
         </div>
         {% else %}
         <p style="color: #888;">Detected plant info will appear here after prediction.</p>
@@ -151,6 +158,32 @@
     </div>
   </div>
 
+  <style>
+    .plant-info {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #222;
+  max-width: 600px;
+  margin: 20px auto;
+  font-size: 1.25rem; /* larger base font size */
+  line-height: 1.6;
+}
+
+.plant-info h3 {
+  font-size: 2rem; /* bigger heading */
+  margin-bottom: 12px;
+  color: #2a7a2a;
+}
+
+.plant-info p {
+  margin: 10px 0;
+}
+
+.plant-info p strong {
+  color: #1b4d1b;
+  font-weight: 700;
+}
+
+  </style>
 
   <script>
     function previewImage(event) {
