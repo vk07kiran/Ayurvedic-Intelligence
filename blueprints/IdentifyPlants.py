@@ -28,13 +28,13 @@ transform = transforms.Compose([
 ])
 
 def is_suspicious_image(pil_image):
-    img = pil_image.resize((64, 64))  # Resize for fast analysis
+    img = pil_image.resize((64, 64))   
     pixels = list(img.getdata())
     mean_color = tuple(sum(c) / len(c) for c in zip(*pixels))
     stddev = sum(
         sum((c - m) ** 2 for c, m in zip(pixel, mean_color)) for pixel in pixels
     ) / (len(pixels) * 3)
-    return stddev < 500  # You can tweak this threshold
+    return stddev < 500   
 
 @plantidentify_bp.route("/identify", methods=["GET"])
 def index():

@@ -43,7 +43,7 @@ app.register_blueprint(homepage_bp)
 # Default route: Redirect to login
 @app.route('/')
 def index():
-    return redirect(url_for('login.login'))  # login = blueprint name
+    return redirect(url_for('homepage.landing_page'))   
 
 # Start the Flask app
 if __name__ == '__main__':

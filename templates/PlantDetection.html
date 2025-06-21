@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
 
   <link rel="stylesheet" href="assets/css/style.css">
-  
+  <link rel="stylesheet" href="assets/css/ChatbotCss.css" />
+  <link rel="stylesheet" href="assets/css/HomePage.css" />
 
   <title>AI Plant Detection</title>
   <style>
@@ -20,7 +22,7 @@
       background: white;
       padding: 30px;
       border-radius: 20px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
     }
 
     h2 {
@@ -66,7 +68,7 @@
     .preview-image img {
       max-width: 300px;
       border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
     }
 
     .result {
@@ -82,101 +84,72 @@
     }
   </style>
 </head>
+
 <body>
 
-    <!-- Header -->
-		<header class="header">
-			<nav class="navbar navbar-expand-lg header-nav">
-				<div class="navbar-header">
-					<a id="mobile_btn" href="javascript:void(0);">
-						<span class="bar-icon">
-							<span></span>
-							<span></span>
-							<span></span>
-						</span>
-					</a>
-					<a href="/homepage" class="navbar-brand logo">
-						<img src="assets/img/AI_logo.png" class="img-fluid" alt="Logo" height="50px" width="50px">
-					</a>
-				</div>
-				<div class="main-menu-wrapper">
-					<div class="menu-header">
-						<a href="/homepage" class="menu-logo">
-							<img src="assets/img/logo.png" class="img-fluid" alt="Logo">
-						</a>
-						<a id="menu_close" class="menu-close" href="javascript:void(0);">
-							<i class="fas fa-times"></i>
-						</a>
-					</div>
-					<ul class="main-nav">
-						<li>
-							<a href="/homepage">Home</a>
-						</li>
-						
-						 
-						<li class="login-link">
-							<a href="/signup">Signup</a>
-						</li>
-					</ul>
-				</div>
-				<ul class="nav header-navbar-rht">
-					<li class="nav-item contact-item">
-						<div class="header-contact-img">
-							<i class="far fa-hospital"></i>
-						</div>
-						<div class="header-contact-detail">
-							<p class="contact-header">Contact</p>
-							<p class="contact-info-header"> +977 98 0045 5785</p>
-						</div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link header-login" href="/signup">Signup </a>
-					</li>
-				</ul>
-			</nav>
-		</header>
-		<!-- /Header -->
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <a href="/homepage">
+        <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60px" width="60px">
+      </a>
+    </div>
 
+    <nav class="navbar">
+      <a href="/homepage"> Home</a>
+      <a href="/landing"> Features </a>
+      <a href="/identify"> Plant Identify </a>
+      <a href="/chatbot"> Chatbot </a>
+      <a href="/login" class="btn">Log out</a>
+    </nav>
+
+    <div class="fas fa-bars" id="menu-btn"></div>
+  </header>
+  <br><br><br><br><br><br>
 
   <div class="container">
-  <h2>AI Plant Detection</h2>
+    <h2>AI Plant Detection</h2>
+    <h3>As of now, highly trained for plants like Tulsi Ashwagandha, Neem, Yarsagumba, Ashoka, Amla, Mint, Aloevera,
+      Wood sorel, Insulin </h3>
+    <br><br>
 
-  <div class="detection-wrapper">
-    <!-- Left Column: Upload + Preview -->
-    <div class="left-column">
-      <form action="/predict" method="post" enctype="multipart/form-data">
-        <input type="file" name="file" accept="image/*" required onchange="previewImage(event)">
-        <button type="submit">Predict</button>
-      </form>
+    <div class="detection-wrapper">
+      <!-- Left Column: Upload + Preview -->
+      <div class="left-column">
+        <form action="/predict" method="post" enctype="multipart/form-data">
+          <input type="file" name="file" accept="image/*" required onchange="previewImage(event)">
+          <button type="submit">Identify</button>
+        </form>
 
-      <div class="preview-image" id="preview">
-        {% if image_url %}
+        <div class="preview-image" id="preview">
+          {% if image_url %}
           <img src="{{ image_url }}" alt="Preview">
+          {% endif %}
+        </div>
+
+        {% if result %}
+        <div class="result" id="prediction-result">
+          Identified Image: {{ result }}
+        </div>
         {% endif %}
       </div>
 
-      {% if result %}
-        <div class="result" id="prediction-result">
-          Prediction: {{ result }}
-        </div>
-      {% endif %}
-    </div>
-
-    <!-- Right Column: Detected Plant Info -->
-    <div class="right-column">
-      {% if result %}
+      <!-- Right Column: Detected Plant Info -->
+      <div class="right-column">
+        {% if result %}
+        <br><br><br>
         <div class="plant-info">
           <h3>Plant Information</h3>
           <p><strong>Name:</strong> {{ result }}</p>
-          <p><strong>Description:</strong> Coming soon...</p>
+          <p><strong>Usage:</strong> Coming soon...</p>
           <p><strong>Places Found:</strong> Coming Soon...</p>
         </div>
-      {% else %}
+        {% else %}
         <p style="color: #888;">Detected plant info will appear here after prediction.</p>
-      {% endif %}
+        {% endif %}
+      </div>
     </div>
   </div>
-</div>
 
 
   <script>
@@ -195,7 +168,7 @@
       const file = event.target.files[0];
       if (file) {
         const reader = new FileReader();
-        reader.onload = function(e) {
+        reader.onload = function (e) {
           const img = document.createElement("img");
           img.src = e.target.result;
           previewDiv.appendChild(img);
@@ -206,50 +179,51 @@
   </script>
 
 
-<!-- footer section starts  -->
-		<style>
-			html, body {
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
+  <!-- footer section starts  -->
+  <style>
+    html,
+    body {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
 
-body {
-  margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background-color: #f5f6fa;
-}
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f5f6fa;
+    }
 
-.container {
-  flex: 1;
-}
+    .container {
+      flex: 1;
+    }
 
-/* Footer styling */
-.footerDoc {
-  background-color: #e9ecef;
-  padding: 20px 0;
-  text-align: center;
-  margin-top: auto;
-}
+    /* Footer styling */
+    .footerDoc {
+      background-color: #e9ecef;
+      padding: 20px 0;
+      text-align: center;
+      margin-top: auto;
+    }
 
-.footerDoc .credits {
-  font-size: 1rem;
-  color: #444;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-  padding-top: 15px;
-}
+    .footerDoc .credits {
+      font-size: 1rem;
+      color: #444;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      padding-top: 15px;
+    }
 
-.footerDoc .credits span {
-  color: #30d158;
-  font-weight: 500;
-}
-
-		</style>
-		<section class="footerDoc" id="footerDoc">
-			<div class="credits">Created by <span>Ayurvedic AI Team</span> | All rights reserved</div>
-		</section>
-		<!-- footer section ends -->
+    .footerDoc .credits span {
+      color: #30d158;
+      font-weight: 500;
+    }
+  </style>
+  <section class="footerDoc" id="footerDoc">
+    <div class="credits">Created by <span>Ayurvedic AI Team</span> | All rights reserved</div>
+  </section>
+  <!-- footer section ends -->
 
 
 </body>
+
 </html>
