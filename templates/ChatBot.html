@@ -2,113 +2,310 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AI Plant Chat</title>
-  <link rel="stylesheet" href="assets/css/ChatbotCss.css" />
-  <link rel="stylesheet" href="assets/css/HomePage.css" />
-  <style>
-    #loading {
-      display: none;
-      font-size: 18px;
-      font-weight: bold;
-      color: black;
-      margin-top: 20px;
-    }
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI Medicinal Plant Query Bot</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Inter Font -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            width: 100vw;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
 
-    #answer {
-      margin-top: 10px;
-      font-size: 18px;
-      font-weight: bold;
-      color: black;
-      margin-top: 20px;
-    }
+        .chat-container {
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            height: 100vh;
+            background-color: #fff;
+            overflow: hidden;
+            position: relative;
+        }
 
-    .chat-output-container {
-      padding: 0 30px;
-      margin-bottom: 150px;
-    }
-  </style>
+        .chat-header {
+            color: #fff;
+            text-align: center;
+            font-weight: 200;
+            font-size: 0.9rem;
+            z-index: 10;
+        }
+
+        .initial-screen {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            flex-grow: 1;
+            padding: 2rem;
+            text-align: center;
+            color: #4a5568;
+            transition: opacity 0.3s ease-in-out;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #fff;
+            z-index: 5;
+        }
+
+        .initial-screen.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+
+        .initial-screen h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: #2d3748;
+        }
+
+        .initial-screen p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            max-width: 500px;
+        }
+
+        .chat-history {
+            flex-grow: 1;
+            padding: 1rem;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+            scrollbar-width: thin;
+            scrollbar-color: #cbd5e1 #f0f2f5;
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out 0.1s;
+        }
+
+        .chat-history.active {
+            opacity: 1;
+        }
+
+        .chat-history::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-history::-webkit-scrollbar-track {
+            background: #f0f2f5;
+            border-radius: 10px;
+        }
+
+        .chat-history::-webkit-scrollbar-thumb {
+            background-color: #cbd5e1;
+            border-radius: 10px;
+            border: 2px solid #f0f2f5;
+        }
+
+        .message-bubble {
+            max-width: 80%;
+            padding: 0.75rem 1rem;
+            border-radius: 1.25rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+            white-space: pre-wrap;
+            /* preserve line breaks */
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: hsl(0, 94%, 66%);
+            color: #fff;
+            border-bottom-right-radius: 0.25rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #e2e8f0;
+            color: #333;
+            border-bottom-left-radius: 0.25rem;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .chat-input-area {
+            display: flex;
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+            gap: 0.75rem;
+            background-color: #fff;
+            box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.05);
+            z-index: 10;
+        }
+
+        .chat-input {
+            flex-grow: 1;
+            padding: 0.75rem 1rem;
+            border: 1px solid #cbd5e1;
+            border-radius: 9999px;
+            outline: none;
+            font-size: 1rem;
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+
+        .chat-input:focus {
+            border-color: hsl(0, 94%, 66%);
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.2);
+        }
+
+        .send-button {
+            background-color: hsl(0, 94%, 66%);
+            color: #fff;
+            padding: 0.75rem 1.25rem;
+            border: none;
+            border-radius: 9999px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out, box-shadow 0.2s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .send-button:hover {
+            background-color: hsl(0, 94%, 66%);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+        }
+
+        .send-button:active {
+            transform: translateY(0);
+            box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+        }
+    </style>
 </head>
 
 <body>
-  <header class="header">
-    <div class="logo">
-      <a href="/homepage">
-        <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60px" width="60px">
-      </a>
+
+    <div class="chat-container">
+        <div class="chat-header">
+            <!-- Header -->
+            <header class="flex items-center justify-between px-8 py-4 bg-white shadow-md">
+                <a href="/homepage">
+                    <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60" width="60">
+                </a>
+                <nav class="space-x-6 text-gray-700 font-medium">
+                    <a href="/homepage" class="hover:text-green-600">Home</a>
+                    <a href="/landing" class="hover:text-green-600">Features</a>
+                    <a href="/identify" class="hover:text-green-600">Plant Identify</a>
+                    <a href="/chatbot" class="hover:text-green-600">Chatbot</a>
+                    <a href="/login"
+                        class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                        style="background-color: hsl(0, 94%, 66%);">Log Out</a>
+                </nav>
+            </header>
+        </div>
+
+        <!-- Initial Screen -->
+        <div id="initial-screen" class="initial-screen">
+            <h1>Welcome to the Medicinal Plant Bot!</h1>
+            <p class="mt-4 text-lg">I'm here to help you explore the fascinating world of medicinal plants. Ask me
+                anything, from their traditional uses to scientific properties and potential benefits.</p>
+            <p class="mt-6 text-md text-gray-500">To get started, simply type your question in the box below and press
+                Enter or click 'Send'.</p>
+        </div>
+
+        <!-- Chat History -->
+        <div class="chat-history" id="chat-history">
+            <!-- Messages will appear here -->
+        </div>
+
+        <!-- Chat Input Area -->
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" class="chat-input" placeholder="Ask about a medicinal plant..." />
+            <button id="send-button" class="send-button" aria-label="Send message">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="w-5 h-5">
+                    <path
+                        d="M3.478 2.405a.75.75 0 0 0-.926.94l2.432 7.917H13.5a.75.75 0 0 1 0 1.5H4.984l-2.432 7.918a.75.75 0 0 0 .926.94 60.519 60.519 0 0 0 18.445-8.916.75.75 0 0 0 0-1.123A60.519 60.519 0 0 0 3.478 2.405Z" />
+                </svg>
+                Send
+            </button>
+        </div>
     </div>
 
-    <nav class="navbar">
-      <a href="/homepage"> Home</a>
-      <a href="/landing"> Features </a>
-      <a href="/identify"> Plant Identify </a>
-      <a href="/chatbot"> Chatbot </a>
-      <a href="/login" class="btn">Log out</a>
-    </nav>
+    <script>
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+        const chatHistory = document.getElementById('chat-history');
+        const initialScreen = document.getElementById('initial-screen');
+        let hasInteracted = false;
 
-    <div class="fas fa-bars" id="menu-btn"></div>
-  </header>
-
-  <br><br><br><br><br><br>
-
-  <main class="main-content">
-    <h1>AI Chat</h1>
-    <p class="subtext">
-      Explore the traditional wisdom and scientific insights of medicinal plants with your smart assistant.<br><br>
-      <strong>Try asking:</strong><br>
-      Is ashwagandha good for anxiety?
-    </p>
-  </main>
-
-
-
-  <div class="chat-output-container">
-    <div id="loading">Thinking...</div>
-    <div id="answer"></div>
-  </div>
-
-  <form id="questionForm">
-    <footer class="chat-input-container">
-      <input type="text" id="question" name="question" required placeholder="Message AI Chat..." />
-      <div class="chat-tools">
-        <button title="Image"><span style="color: black;">Image Upload Coming Soon</span></button>
-        <button type="submit" title="Send" class="send"><span> Ask ⬆️</span></button>
-      </div>
-    </footer>
-  </form>
-
-  <script>
-    document.getElementById('questionForm').addEventListener('submit', async function (e) {
-      e.preventDefault();
-
-      const question = document.getElementById('question').value;
-      const answerDiv = document.getElementById('answer');
-      const loadingDiv = document.getElementById('loading');
-
-      loadingDiv.style.display = 'block';
-      answerDiv.innerHTML = '';
-
-      try {
-        const response = await fetch('/ask', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          body: JSON.stringify({ question })
+        sendButton.addEventListener('click', sendMessage);
+        chatInput.addEventListener('keypress', function (event) {
+            if (event.key === 'Enter') {
+                event.preventDefault();
+                sendMessage();
+            }
         });
 
-        if (!response.ok) throw new Error('Error fetching the answer');
+        function showChatInterface() {
+            if (!hasInteracted) {
+                initialScreen.classList.add('hidden');
+                chatHistory.classList.add('active');
+                hasInteracted = true;
+                setTimeout(() => chatInput.focus(), 300);
+            }
+        }
 
-        const data = await response.json();
-        answerDiv.innerHTML = `<p>${data.answer || 'Sorry, I could not find an answer for that.'}</p>`;
-      } catch (error) {
-        answerDiv.innerHTML = '<p>An error occurred. Please try again later.</p>';
-      } finally {
-        loadingDiv.style.display = 'none';
-      }
-    });
-  </script>
+        async function sendMessage() {
+            const messageText = chatInput.value.trim();
+            if (messageText === '') return;
+
+            showChatInterface();
+
+            // Add user message to chat history
+            const userMessageDiv = document.createElement('div');
+            userMessageDiv.className = 'message-bubble user-message';
+            userMessageDiv.textContent = messageText;
+            chatHistory.appendChild(userMessageDiv);
+
+            chatInput.value = '';
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            // Show loading bot message while fetching response
+            const loadingBotDiv = document.createElement('div');
+            loadingBotDiv.className = 'message-bubble bot-message';
+            loadingBotDiv.textContent = 'Thinking...';
+            chatHistory.appendChild(loadingBotDiv);
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+
+            try {
+                const response = await fetch('/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ question: messageText })
+                });
+
+                if (!response.ok) throw new Error('Network response was not ok');
+
+                const data = await response.json();
+
+                loadingBotDiv.textContent = data.answer || "Sorry, I couldn't find an answer for that.";
+            } catch (error) {
+                loadingBotDiv.textContent = 'An error occurred. Please try again later.';
+            }
+
+            chatHistory.scrollTop = chatHistory.scrollHeight;
+        }
+    </script>
 </body>
 
 </html>

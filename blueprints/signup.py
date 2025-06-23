@@ -20,7 +20,7 @@ def signup():
         username = request.form['username']
         email = request.form['email']
         password = request.form['password']  # plain password for now
-        role = request.form['role'].lower()
+        role = "Patient"
         user_id = str(uuid.uuid4())
 
         conn = get_db_connection()
@@ -40,10 +40,10 @@ def signup():
             (user_id, username, email, password, role)
         )
 
-        # Insert into Doctor or Patient table based on role
-        if role == 'doctor':
+        # Insert into Patient or Patient table based on role
+        if role == 'Patient':
             cursor.execute(
-                "INSERT INTO Doctor (DoctorID, DoctorProfilePic) VALUES (%s, 'img')",
+                "INSERT INTO Patient (PatientUserId, PatientProfilePic) VALUES (%s, 'img')",
                 (user_id,)
             )
         elif role == 'patient':

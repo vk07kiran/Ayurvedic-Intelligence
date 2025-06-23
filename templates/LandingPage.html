@@ -1,82 +1,82 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta
-			name="viewport"
-			content="width=device-width, initial-scale=1.0"
-		/>
-		<title>Ayurbedic Intelligence</title>
-		<!-- Main Template CSS File -->
-		<link rel="stylesheet" href="assets/css/LandingPage.css" />
-        <link rel="stylesheet" href="assets/css/HomePage.css" />
-		<!-- Google Fonts -->
-		<link rel="preconnect" href="https://fonts.gstatic.com" />
-		<link
-			href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700;800&#038;display=swap"
-			rel="stylesheet"
-		/>
-	</head>
-	<body>
-		<!-- navbar section starts  -->
-        <header class="header">
-            <div class="logo">
-                <a href="/homepage">
-                <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60px" width="60px" >
-            </a>
-            </div>
-    
-            <nav class="navbar">
-      <a href="/homepage"> Home</a>
-      <a href="/landing"> Features </a>
-      <a href="/identify"> Plant Identify </a>
-      <a href="/chatbot"> Chatbot </a>
-      <a href="/login" class="btn">Log out</a>
-    </nav>
-    
-            <div class="fas fa-bars" id="menu-btn"></div>
-        </header>
-        <!-- navbar section ends  -->
-		
-		<!-- Start Features -->
-		<div class="features">
-            <br><br><br> <br><br><br> 
-            <h2 class="special-heading">Services</h2>
-			 <!-- abouts section starts  -->
-             <section class="about" id="about">
-               
-        
-                <div class="box-container">
-                    <div class="box">
-                        <img src="assets/test/images/SearchPlant.png" alt="plantdetection" height="180px" width="180px">
-                        <h3>Plant Detection</h3>
-                        <p> </p>
-                        <a href="/identify" class="all-btn">Identify Plants</a>
-                    </div>
-        
-                    <div class="box">
-                        <img src="assets/img/DoctorAI.png" alt="medicine" height="180px" width="180px">
-                        <h3>AI Chat Bot</h3>
-                        <p> </p>
-                        <a href="{{ url_for('main.chatbot_page') }}" class="all-btn">Try AI Chat Bot</a>
-                    </div>
-        
-                    <div class="box">
-                        <img src="assets/test/images/Sthetesticope.png" alt="doctor" height="180px" width="180px">
-                        <h3>Consult a Doctor</h3>
-                        <p> </p>
-                        <a href="search.html" class="all-btn">Session with Doctor</a>
-                    </div>
-                </div>
-            </section>
-		</div>
-		<!-- End Features -->
-		<!-- Start Footer -->
 
-        <section class="footer" id="footer">
-		<div class="credit">Created by <span>Ayurvedic AI Team</span> | All rights reserved</div>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ayurbedic Intelligence</title>
+    <!-- Main Template CSS File -->
+    <link rel="stylesheet" href="assets/css/LandingPage.css" />
+    <link rel="stylesheet" href="assets/css/HomePage.css" />
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@200;300;400;500;600;700;800&#038;display=swap"
+        rel="stylesheet" />
+</head>
+
+<body>
+    <!-- navbar section starts  -->
+    <header class="header">
+        <div class="logo">
+            <a href="/homepage">
+                <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60px" width="60px">
+            </a>
+        </div>
+
+        <nav class="navbar">
+            <a href="/homepage"> Home</a>
+            <a href="/landing"> Features </a>
+            <a href="/identify"> Plant Identify </a>
+            <a href="/chatbot"> Chatbot </a>
+            <a href="/dashboard?id={{ patient.PatientUserId }}"> Dashboard {{ patient.PatientFirstName }}</a>
+            <a href="/login" class="btn">Log out</a>
+        </nav>
+
+        <div class="fas fa-bars" id="menu-btn"></div>
+    </header>
+    <!-- navbar section ends  -->
+
+    <!-- Start Features -->
+    <div class="features">
+        <br><br><br> <br><br><br>
+<h2 style="font-size: 32px; font-weight: bold; color: #2d3748; text-align: center; margin-top: 6vh;">Services</h2>
+
+        <!-- abouts section starts  -->
+        <section class="about" id="about">
+
+
+            <div class="box-container">
+                <div class="box">
+                    <img src="assets/test/images/SearchPlant.png" alt="plantdetection" height="180px" width="180px">
+                    <h3>Plant Detection</h3>
+                    <p> </p>
+                    <a href="/identify" class="all-btn">Identify Plants</a>
+                </div>
+
+                <div class="box">
+                    <img src="assets/img/DoctorAI.png" alt="medicine" height="180px" width="180px">
+                    <h3>AI Chat Bot</h3>
+                    <p> </p>
+                    <a href="{{ url_for('main.chatbot_page') }}" class="all-btn">Try AI Chat Bot</a>
+                </div>
+
+                <!-- <div class="box">
+                    <img src="assets/test/images/Sthetesticope.png" alt="doctor" height="180px" width="180px">
+                    <h3>Consult a Doctor</h3>
+                    <p> </p>
+                    <a href="search.html" class="all-btn">Session with Doctor</a>
+                </div> -->
+            </div>
+        </section>
+    </div>
+    <!-- End Features -->
+    <!-- Start Footer -->
+
+    <section class="footer" id="footer">
+        <div class="credit">Created by <span>Ayurvedic AI Team</span> | All rights reserved</div>
     </section>
-		<!-- End Footer -->
-	</body>
+    <!-- End Footer -->
+</body>
+
 </html>

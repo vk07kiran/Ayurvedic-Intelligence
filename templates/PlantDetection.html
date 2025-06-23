@@ -2,261 +2,184 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Identifier</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f0f4f8;
+            font-size: 1rem;
+        }
 
-  <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/ChatbotCss.css" />
-  <link rel="stylesheet" href="assets/css/HomePage.css" />
+        .card {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 9rem;
+            margin: 1rem auto;
+            width: 1200px;
+        }
 
-  <title>AI Plant Detection</title>
-  <style>
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f6fa;
-    }
+        .btn-primary {
+            background-image: linear-gradient(to right, #4CAF50, #8BC34A);
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.75rem;
+            font-weight: 900;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(76, 175, 80, 0.3);
+        }
 
-    .container {
-      max-width: 800px;
-      margin: 40px auto;
-      background: white;
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
-    }
+        .btn-primary:hover {
+            box-shadow: 0 6px 15px rgba(76, 175, 80, 0.4);
+            transform: translateY(-2px);
+        }
 
-    h2 {
-      text-align: center;
-      margin-bottom: 30px;
-    }
+        .input-file {
+            border: 2px dashed #CBD5E0;
+            padding: 1.5rem;
+            border-radius: 0.75rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
 
-    form {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 15px;
-    }
+        .input-file:hover {
+            border-color: #A0AEC0;
+        }
 
-    input[type="file"] {
-      padding: 10px;
-      border: 1px solid #ccc;
-      border-radius: 10px;
-      background-color: #fafafa;
-      width: 70%;
-    }
+        .result-section-side {
+            padding-left: 2rem;
+        }
 
-    button {
-      background-color: #30d158;
-      border: none;
-      padding: 12px 24px;
-      border-radius: 12px;
-      color: white;
-      font-size: 16px;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-
-    button:hover {
-      background-color: #28c04e;
-    }
-
-    .preview-image {
-      margin-top: 20px;
-      text-align: center;
-    }
-
-    .preview-image img {
-      max-width: 300px;
-      border-radius: 16px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .result {
-      margin-top: 25px;
-      text-align: center;
-      font-size: 18px;
-      color: #333;
-      padding: 12px;
-      border-left: 5px solid #30d158;
-      background-color: #f1fcf4;
-      border-radius: 8px;
-      display: inline-block;
-    }
-  </style>
+        @media (max-width: 639px) {
+            .result-section-side {
+                border-top: 1px solid #E2E8F0;
+                padding-top: 2rem;
+                padding-left: 0;
+                margin-top: 2rem;
+            }
+        }
+    </style>
 </head>
 
 <body>
+    <!-- Header -->
+    <header class="flex items-center justify-between px-8 py-4 bg-white shadow-md">
+        <a href="/homepage">
+            <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60" width="60">
+        </a>
+        <nav class="space-x-6 text-gray-700 font-medium">
+            <a href="/homepage" class="hover:text-green-600">Home</a>
+            <a href="/landing" class="hover:text-green-600">Features</a>
+            <a href="/identify" class="hover:text-green-600">Plant Identify</a>
+            <a href="/chatbot" class="hover:text-green-600">Chatbot</a>
+            <a href="/login"
+                class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                style="background-color: hsl(0, 94%, 66%);">Log Out</a>
+        </nav>
+    </header>
 
-  <!-- Header -->
-  <header class="header">
-    <div class="logo">
-      <a href="/homepage">
-        <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60px" width="60px">
-      </a>
-    </div>
+    <div class="card" style="padding: 1.5rem;">
+        <h1 class="text-3xl font-bold text-center text-gray-800 mb-6" style="font-size: 20px;">🌿 Plant Identifier 🌿
+        </h1>
+        <h2
+            style="font-family: Georgia, serif; font-size: 20px; font-weight: normal; color: #333333; line-height: 1.4; text-align: center; margin: 20px 0;">
+            The model has been meticulously trained to identify medicinal plants; however, it may occasionally err.
+            Please take appropriate measures accordingly.
+        </h2>
 
-    <nav class="navbar">
-      <a href="/homepage"> Home</a>
-      <a href="/landing"> Features </a>
-      <a href="/identify"> Plant Identify </a>
-      <a href="/chatbot"> Chatbot </a>
-      <a href="/login" class="btn">Log out</a>
-    </nav>
+        <br>
 
-    <div class="fas fa-bars" id="menu-btn"></div>
-  </header>
-  <br><br><br><br><br><br>
-
-  <div class="container">
-    <h2>AI Plant Detection</h2>
-    <h3>As of now, highly trained for plants like Tulsi Ashwagandha, Neem, Yarsagumba, Ashoka, Amla, Mint, Aloevera,
-      Wood sorel, Insulin </h3>
-    <br><br>
-
-    <div class="detection-wrapper">
-      <!-- Left Column: Upload + Preview -->
-      <div class="left-column">
-        <form action="/predict" method="post" enctype="multipart/form-data">
-          <input type="file" name="file" accept="image/*" required onchange="previewImage(event)">
-          <button type="submit">Identify</button>
-        </form>
-
-        <div class="preview-image" id="preview">
-          {% if image_url %}
-          <img src="{{ image_url }}" alt="Preview">
-          {% endif %}
-        </div>
-
-        {% if result %}
-        <div class="result" id="prediction-result">
-          Identified Image: {{ result }}
-        </div>
+        {% if result and not plant_name %}
+        <div class="text-red-600 text-center text-lg font-semibold mb-4">{{ result }}</div>
         {% endif %}
-      </div>
 
-      <!-- Right Column: Detected Plant Info -->
-      <div class="right-column">
-        {% if result %}
-        <br><br><br>
-        <div class="plant-info">
-          <h3>Plant Information</h3>
-          <p><strong>Name:</strong> {{ plant_name }}</p>
-          {% if scientific %}
-          <p><strong>Scientific Name:</strong> {{ scientific }}</p>
-          <p><strong>Usage:</strong> {{ usage }}</p>
-          <p><strong>Parts Used:</strong> {{ parts }}</p>
-          <p><strong>Region in Nepal:</strong> {{ region }}</p>
-          {% else %}
-          <p>No Information</p>
-          {% endif %}
+        <div class="flex flex-col sm:flex-row gap-8">
+            <!-- Left Column: Upload and Preview -->
+            <div class="flex-1">
+                <form id="uploadForm" action="/predict" method="post" enctype="multipart/form-data">
+                    <div class="mb-6">
+                        <label for="plantImageInput"
+                            style="font-family: Georgia, serif; font-size: 20px; font-weight: normal; color: #333333; line-height: 1.4; text-align: center; margin: 20px 0;">Upload
+                            Plant Image:</label>
+                        <br><br>
+                        <input type="file" id="plantImageInput" name="file" accept="image/*" class="hidden"
+                            onchange="previewImage(event)">
+                        <div class="input-file flex flex-col items-center justify-center"
+                            onclick="document.getElementById('plantImageInput').click()">
+                            <svg class="w-12 h-12 text-gray-400 mb-3" fill="none" stroke="currentColor"
+                                viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12">
+                                </path>
+                            </svg>
+                            <p class="text-gray-500 text-lg">Click to upload image</p>
+                            <p class="text-gray-400 text-sm mt-1">(Max file size: 5MB)</p>
+                        </div>
+                        <p id="fileName" class="text-center text-gray-600 mt-2 text-sm italic"></p>
+                    </div>
+                    <div id="imagePreviewContainer" class="hidden mb-6 flex justify-center">
+                        <img id="imagePreview" src="#" alt="Image Preview"
+                            class="max-w-full h-auto max-h-80 rounded-lg shadow-lg object-contain">
+                    </div>
+                    <div class="text-center mb-6">
+                        <button id="identifyButton" class="btn-primary" type="submit"
+                            style="background-color: hsl(0, 94%, 66%);">
+                            <span id="buttonText">Identify Plant</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
 
+            <!-- Right Column: Plant Info -->
+            <div id="plantInfoSection"
+                class="flex-1 result-section-side {% if result and plant_name %}block{% else %}hidden{% endif %}">
+                <h2 class="text-2xl font-semibold text-gray-800 mb-4">Identification Results:</h2>
+                <div>
+                    <p class="text-lg text-gray-600 mb-2"><strong>Plant Name:</strong> <span
+                            class="font-medium text-green-700">{{ plant_name or 'N/A' }}</span></p>
+                    <p class="text-lg text-gray-600 mb-2"><strong>Scientific Name:</strong> <span
+                            class="italic text-gray-800">{{ scientific or 'N/A' }}</span></p>
+                    <p class="text-lg text-gray-600 mb-2"><strong>Confidence:</strong> <span
+                            class="font-bold text-blue-600">{{ result or 'N/A' }}</span></p>
+                    <p class="text-lg text-gray-600 mb-2"><strong>Usage:</strong> <span class="text-gray-700">{{ usage
+                            or 'N/A' }}</span></p>
+                    <p class="text-lg text-gray-600 mb-2"><strong>Parts Used:</strong> <span class="text-gray-700">{{
+                            parts or 'N/A' }}</span></p>
+                    <p class="text-lg text-gray-600 mb-2"><strong>Region of Nepal:</strong> <span
+                            class="text-gray-700">{{ region or 'N/A' }}</span></p>
+                </div>
+            </div>
         </div>
-        {% else %}
-        <p style="color: #888;">Detected plant info will appear here after prediction.</p>
-        {% endif %}
-      </div>
+
+
     </div>
-  </div>
-
-  <style>
-    .plant-info {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #222;
-  max-width: 600px;
-  margin: 20px auto;
-  font-size: 1.25rem; /* larger base font size */
-  line-height: 1.6;
-}
-
-.plant-info h3 {
-  font-size: 2rem; /* bigger heading */
-  margin-bottom: 12px;
-  color: #2a7a2a;
-}
-
-.plant-info p {
-  margin: 10px 0;
-}
-
-.plant-info p strong {
-  color: #1b4d1b;
-  font-weight: 700;
-}
-
-  </style>
-
-  <script>
-    function previewImage(event) {
-      const previewDiv = document.getElementById('preview');
-      const predictionDiv = document.getElementById('prediction-result');
-
-      // Remove old prediction if exists
-      if (predictionDiv) {
-        predictionDiv.remove();
-      }
-
-      // Clear preview first
-      previewDiv.innerHTML = "";
-
-      const file = event.target.files[0];
-      if (file) {
-        const reader = new FileReader();
-        reader.onload = function (e) {
-          const img = document.createElement("img");
-          img.src = e.target.result;
-          previewDiv.appendChild(img);
-        };
-        reader.readAsDataURL(file);
-      }
-    }
-  </script>
-
-
-  <!-- footer section starts  -->
-  <style>
-    html,
-    body {
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-    }
-
-    body {
-      margin: 0;
-      font-family: 'Segoe UI', sans-serif;
-      background-color: #f5f6fa;
-    }
-
-    .container {
-      flex: 1;
-    }
-
-    /* Footer styling */
-    .footerDoc {
-      background-color: #e9ecef;
-      padding: 20px 0;
-      text-align: center;
-      margin-top: auto;
-    }
-
-    .footerDoc .credits {
-      font-size: 1rem;
-      color: #444;
-      border-top: 1px solid rgba(0, 0, 0, 0.1);
-      padding-top: 15px;
-    }
-
-    .footerDoc .credits span {
-      color: #30d158;
-      font-weight: 500;
-    }
-  </style>
-  <section class="footerDoc" id="footerDoc">
-    <div class="credits">Created by <span>Ayurvedic AI Team</span> | All rights reserved</div>
-  </section>
-  <!-- footer section ends -->
-
-
+    <br><br><br><br>
+    <section class="footerDoc mt-10"
+        style="bottom: 0; left: 0; width: 100%; background: #f9f9f9; border-top: 1px solid #d1d5db; padding: 1rem 0; text-align: center; z-index: 1000;">
+        <div class="credits text-2xl text-black">
+            Created by <span class="text-red-500 cursor-pointer">Ayurvedic AI Team</span> | All rights reserved
+        </div>
+    </section>
+    <script>
+        function previewImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                document.getElementById('fileName').textContent = `Selected file: ${file.name}`;
+                const preview = document.getElementById('imagePreview');
+                preview.src = URL.createObjectURL(file);
+                document.getElementById('imagePreviewContainer').classList.remove('hidden');
+                document.getElementById('plantInfoSection').classList.add('hidden');
+            } else {
+                document.getElementById('fileName').textContent = '';
+                document.getElementById('imagePreviewContainer').classList.add('hidden');
+            }
+        }
+    </script>
 </body>
 
 </html>

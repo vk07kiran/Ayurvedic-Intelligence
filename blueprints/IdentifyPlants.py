@@ -31,7 +31,7 @@ transform = transforms.Compose([
 
 # Suspicious image check: avoids overly uniform or blank images
 def is_suspicious_image(pil_image):
-    img = pil_image.resize((64, 64))   
+    img = pil_image.resize((264, 264))   
     pixels = list(img.getdata())
     mean_color = tuple(sum(c) / len(c) for c in zip(*pixels))
     stddev = sum(
@@ -89,7 +89,7 @@ def predict_route():
         top_class_idx = top_idxs[0].item()
 
         if top1_conf < 0.8 or (top1_conf - top2_conf) < 0.2:
-            return render_template("PlantDetection.html", result=f"Unknown or invalid input (Confidence: {top1_conf * 100:.2f}%)")
+            return render_template("PlantDetection.html", result=f"This plant seems to match several known species. Please provide a clearer, closer photo or try again from a different angle.")
 
         plant_name = class_names[top_class_idx]
         details = get_plant_info(plant_name)
