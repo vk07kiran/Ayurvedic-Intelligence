@@ -15,7 +15,7 @@ class_names = ['Aloevera', 'Amaltas Raj Brikshya', 'Amla', 'Ank', 'Ashok', 'Ashw
 # Load the trained model
 model = models.resnet18()
 model.fc = torch.nn.Linear(model.fc.in_features, len(class_names))
-model.load_state_dict(torch.load("mmmm.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("Information/PlantIdentificationModel.pth", map_location=torch.device('cpu')))
 model.eval()
 
 # Image preprocessing
@@ -25,18 +25,18 @@ transform = transforms.Compose([
 ])
 
 # Suspicious image check: avoids overly uniform or blank images
-def is_suspicious_image(pil_image):
-    img = pil_image.resize((264, 264))   
-    pixels = list(img.getdata())
-    mean_color = tuple(sum(c) / len(c) for c in zip(*pixels))
-    stddev = sum(
-        sum((c - m) ** 2 for c, m in zip(pixel, mean_color)) for pixel in pixels
-    ) / (len(pixels) * 3)
-    return stddev < 500
+# def is_suspicious_image(pil_image):
+#     img = pil_image.resize((264, 264))   
+#     pixels = list(img.getdata())
+#     mean_color = tuple(sum(c) / len(c) for c in zip(*pixels))
+#     stddev = sum(
+#         sum((c - m) ** 2 for c, m in zip(pixel, mean_color)) for pixel in pixels
+#     ) / (len(pixels) * 3)
+#     return stddev < 500
 
 # Lookup plant info from CSV
 def get_plant_info(plant_name):
-    csv_path = r"C:/Users/zeb/Desktop/Ayurvedic Intelligence/Information/PlantDatabase.csv"
+    csv_path = r"Information/PlantDatabase.csv"
     with open(csv_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -69,8 +69,8 @@ def predict_route():
     except Exception:
         return render_template("PlantDetection.html", result="Invalid image format.")
 
-    if is_suspicious_image(image):
-        return render_template("PlantDetection.html", result="This doesn't appear to be a valid plant photo.")
+    # if is_suspicious_image(image):
+    #     return render_template("PlantDetection.html", result="This doesn't appear to be a valid plant photo.")
 
     image_tensor = transform(image).unsqueeze(0)
 
@@ -84,9 +84,14 @@ def predict_route():
         top_class_idx = top_idxs[0].item()
 
         if top1_conf < 0.8 or (top1_conf - top2_conf) < 0.2:
-            return render_template("PlantDetection.html", result=f"This plant seems to match several known species. Please provide a clearer, closer photo or try again from a different angle.")
+            return render_template("PlantDetection.html", result=f"This plant seems to match several known species. Please provide a clearer, closer image or try again from a different angle.")
 
         plant_name = class_names[top_class_idx]
+
+
+        if plant_name == "Unknown":
+            return render_template("PlantDetection.html", result=f"The uploaded image doesn't appear to be a valid plant image. Please try again.")
+
         details = get_plant_info(plant_name)
 
         if details:
@@ -105,3 +110,4 @@ def predict_route():
 # def logout():
 #     session.clear()  # Clears all session data (user_id, username, etc.)
 #     return redirect(url_for('login.login'))  # Redirect to login page
+

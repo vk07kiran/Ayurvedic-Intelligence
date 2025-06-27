@@ -8,7 +8,6 @@ from blueprints.ChatbotMain import chatbotmain_bp
 from blueprints.HomePage import homepage_bp
 from blueprints.IdentifyPlants import plantidentify_bp
 
-
 import os
 
 app = Flask(
