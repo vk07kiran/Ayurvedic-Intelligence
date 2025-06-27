@@ -60,3 +60,9 @@ def ask():
 
     return jsonify({"answer": result})
 
+
+@chatbotmain_bp.route('/logout')
+def logout():
+    session.clear()  # Clears all session data (user_id, username, etc.)
+    return redirect(url_for('login.login'))  # Redirect to login page
+

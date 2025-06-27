@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request
+from flask import Blueprint, render_template, request, session
 import torch
 from torchvision import models, transforms
 from PIL import Image
@@ -8,19 +8,14 @@ import csv
 plantidentify_bp = Blueprint('predict', __name__)
 
 # Plant class labels
-class_names = [
-    'Aloevera', 'Amla', 'Amruta_Balli', 'Arali', 'Ashoka', 'Ashwagandha', 'Avacado',
-    'Bamboo', 'Basale', 'Betel', 'Betel_Nut', 'Brahmi', 'Castor', 'Curry_Leaf',
-    'Doddapatre', 'Ekka', 'Ganike', 'Gauva', 'Geranium', 'Henna', 'Hibiscus',
-    'Honge', 'Insulin', 'Jasmine', 'Lemon', 'Lemon_grass', 'Mango', 'Mint',
-    'Nagadali', 'Neem', 'Nithyapushpa', 'Nooni', 'Pappaya', 'Pepper',
-    'Pomegranate', 'Raktachandini', 'Rose', 'Sapota', 'Tulasi', 'Wood_sorel', 'Yarsagumba'
-]
+class_names = ['Aloevera', 'Amaltas Raj Brikshya', 'Amla', 'Ank', 'Ashok', 'Ashwagandha', 'Asuro', 'Atis', 'Avacado', 'Bajradanti', 'Barberry', 'Barro', 'Bel', 'Bhoj patra', 'Bikh', 'Bojho', 'Chamomile', 'Chhatiwan', 'Chiraito', 'Chutro', 'Dalchini', 'Datiwan', 'Dhasingre', 'Dhupi', 'Ghod tapre', 'Gokul Dhup', 'Gunsi', 'Gurjo', 'Harro', 'Insulin', 'Ishwori', 'Jatamasi', 'Jethi madhu', 'Jhari Kote', 'Jhyau', 'Kakoli Ban Lasun', 'Keshar', 'Kumkum', 'Kurilo', 'Kutki', 'Kyasar', 'Laghu Patra', 'Lauth Salla', 'Majitho', 'Mango', 'Mint', 'Mirkhe Lahara', 'Nagbeli', 'Neem', 'Nirbisi', 'Okhar', 'Padamchal', 'Pakhanbed', 'Panchaune', 'Pangro', 'Pipla', 'Rhododendron', 'Rittha', 'Rose', 'Rudrakshya', 'Rukh Unyiu', 'Sarpagandha', 'Satuwa', 'Seto Musli', 'Simal', 'Somlata', 'Sugandhakokila', 'Sugandhawal', 'Timur', 'Tulasi', 'Unknown', 'Valu Kath', 'Vote Lahara', 'Vyakur', 'Yarsagumba']
+
+
 
 # Load the trained model
 model = models.resnet18()
 model.fc = torch.nn.Linear(model.fc.in_features, len(class_names))
-model.load_state_dict(torch.load("plant_classifier_new.pth", map_location=torch.device('cpu')))
+model.load_state_dict(torch.load("mmmm.pth", map_location=torch.device('cpu')))
 model.eval()
 
 # Image preprocessing
@@ -41,7 +36,7 @@ def is_suspicious_image(pil_image):
 
 # Lookup plant info from CSV
 def get_plant_info(plant_name):
-    csv_path = r"C:\Users\zeb\Desktop\Ayurvedic Intelligence\Information\PlantDatabase.csv"
+    csv_path = r"C:/Users/zeb/Desktop/Ayurvedic Intelligence/Information/PlantDatabase.csv"
     with open(csv_path, newline='', encoding='utf-8') as csvfile:
         reader = csv.DictReader(csvfile)
         for row in reader:
@@ -105,3 +100,8 @@ def predict_route():
         else:
             result = f"{plant_name} (Confidence: {top1_conf * 100:.2f}%), but no additional data found."
             return render_template("PlantDetection.html", result=result)
+
+# @plantidentify_bp.route('/logout')
+# def logout():
+#     session.clear()  # Clears all session data (user_id, username, etc.)
+#     return redirect(url_for('login.login'))  # Redirect to login page

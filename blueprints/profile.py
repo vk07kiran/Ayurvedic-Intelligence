@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory
+from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory, session
 import mysql.connector
 import os, time, uuid
 from werkzeug.utils import secure_filename
@@ -17,7 +17,7 @@ def get_db_connection():
 
 @profile_bp.route('/editprofile')
 def edit_profile():
-    Patient_id = request.args.get('id', '').strip()
+    Patient_id = session.get('user_id')
     if not Patient_id:
         return redirect(url_for('login.login'))
 
@@ -106,3 +106,9 @@ def submit_Patient():
         conn.close()
 
     return redirect(url_for('profile.edit_profile', id=Patient_id))
+
+
+@profile_bp.route('/logout')
+def logout():
+    session.clear()  # Clears all session data (user_id, username, etc.)
+    return redirect(url_for('login.login'))  # Redirect to login page

@@ -38,7 +38,7 @@ def login():
         if user and user['UserPassword'] == password:
             # Store user session
             session['user_id'] = user['UserID']
-            session['username'] = user['Username']
+            # session['username'] = user['Username']
 
             # Check if the user is a Patient
             cursor.execute("SELECT * FROM Users WHERE UserID = %s AND UserType= 'Patient' ", (user['UserID'],))
@@ -69,3 +69,5 @@ def logout():
     session.clear()
     flash('You have been logged out.', 'info')
     return redirect(url_for('login.login'))
+
+

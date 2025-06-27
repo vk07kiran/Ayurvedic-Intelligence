@@ -1,6 +1,4 @@
-from flask import Blueprint, render_template, request
-from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory
-
+from flask import Blueprint, render_template, session, redirect, url_for
 import mysql.connector
 
 landing_bp = Blueprint('landing', __name__)
@@ -15,12 +13,13 @@ def get_db_connection():
 
 @landing_bp.route('/landing')
 def landing_page():
-    patient_user_id = request.args.get('id')  # get the PatientUserId from URL query param
+    # Get user ID from session
+    patient_user_id = session.get('user_id')
 
     if not patient_user_id:
-        return redirect(url_for('login.login'))
+        return redirect(url_for('login.login'))  # Not logged in, redirect to login
 
-    # connect to DB and fetch patient details
+    # Connect to DB and fetch patient details
     conn = get_db_connection()
     cursor = conn.cursor(dictionary=True)
     cursor.execute("SELECT * FROM patient WHERE PatientUserId = %s", (patient_user_id,))
@@ -31,5 +30,10 @@ def landing_page():
     if not patient_data:
         return "Patient not found", 404
 
-    # render the landing page with patient data
+    # Render the landing page with patient data
     return render_template('LandingPage.html', patient=patient_data)
+
+@landing_bp.route('/logout')
+def logout():
+    session.clear()  # Clears all session data (user_id, username, etc.)
+    return redirect(url_for('login.login'))  # Redirect to login page

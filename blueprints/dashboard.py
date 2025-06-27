@@ -1,4 +1,4 @@
-from flask import Blueprint, render_template, request, send_from_directory
+from flask import Blueprint, render_template, request, send_from_directory, session
 from flask import Blueprint, render_template, request, redirect, url_for, send_from_directory
 
 import mysql.connector
@@ -20,7 +20,7 @@ def uploaded_image(filename):
 @dashboard_bp.route('/dashboard')
 @dashboard_bp.route('/dashboard')
 def show_Patient():
-    Patient_id = request.args.get('id', '').strip()
+    Patient_id = session.get('user_id')
     if not Patient_id:
         return redirect(url_for('login.login'))
 
@@ -38,3 +38,10 @@ def show_Patient():
     cursor.close()
     conn.close()
     return render_template('Patient-dashboard.html', patient=patient)
+
+
+@dashboard_bp.route('/logout')
+def logout():
+    session.clear()  # Clears all session data (user_id, username, etc.)
+    return redirect(url_for('login.login'))  # Redirect to login page
+
