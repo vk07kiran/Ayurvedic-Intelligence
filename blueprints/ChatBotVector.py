@@ -19,24 +19,6 @@ db_location = "./TrainedDataForAIBot" ## folder to store database. Chroma vector
 
 add_documents = not os.path.exists(db_location) ## check if database exists
 
-# if add_documents:
-#     documents = []
-#     ids = []
-
-#     for i, row in df.iterrows():        ## this acess platdatabase row by row
-#         document = Document(
-#     page_content=f"{row['PlantName']} (Scientific Name: {row['ScientificName']}): {row['Usage']}",
-#     id=str(i)
-# )
-#         ids.append(str(i))
-#         documents.append(document)
-
-# vector_store = Chroma(
-#     collection_name="PlantName",
-#     persist_directory=db_location,
-#     embedding_function=embeddings
-# )
-
 if add_documents:
     documents = []
     ids = []
