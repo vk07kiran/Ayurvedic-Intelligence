@@ -1,11 +1,138 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yoga</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Yoga Asanas Guide</title>
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" href="assets/css/HomePage.css">
+  <link rel="stylesheet" href="../static/assets/css/HomePage.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
 </head>
+
 <body>
-    <h1>Yoga here!</h1>
+
+  <!-- navbar section starts  -->
+  <header class="header">
+    <div class="logo">
+      <a href="/homepage">
+        <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60px" width="60px">
+      </a>
+    </div>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+        <nav class="space-x-6 text-gray-700 font-medium" style="font-size: medium;">
+            <a href="/homepage" class="hover:text-green-600">Home</a>
+            <a href="/yoga" class="hover:text-green-600">Yoga</a>
+            <a href="/meditation" class="hover:text-green-600">Meditation</a>
+            <a href="/diet" class="hover:text-green-600">Diet</a>
+            <a href="/identify" class="hover:text-green-600">Plant Identify</a>
+            <a href="/chatbot" class="hover:text-green-600">Chatbot</a>
+            <a href="/logout"
+                class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                style="background-color: hsl(0, 94%, 66%);">Log In</a>
+
+
+        </nav>
+
+    <div class="fas fa-bars" id="menu-btn"></div>
+  </header>
+  <!-- navbar section ends  -->
+
+  <header>
+    <h1>Yoga Asanas Guide</h1>
+    <input type="text" id="search" placeholder="Search for an asana..." />
+  </header>
+  <main id="asana-list">
+    <!-- Asana entries will go here -->
+
+    <div class="asana">
+      <h2>Adho Mukha Shvanasana (downward [facing] dog)</h2>
+      <h3>Steps:</h3>
+      <p>Start on hands/knees.<br>Tuck toes, lift hips upward.<br>Press heels down, lengthen spine.<br>Hold, then
+        release to knees.</p>
+      <h3>Benefits:</h3>
+      <ul>
+        <li>Back Pain</li>
+        <li>Headaches/Migraines</li>
+        <li>Stress, Anxiety</li>
+      </ul>
+    </div>
+
+    <div class="asana">
+      <h2>Ardha Padmasana (half lotus)</h2>
+      <h3>Steps:</h3>
+      <p>Sit with legs extended.<br>Bend right knee, place foot on left thigh.<br>Rest hands on knees.<br>Keep spine
+        straight, breathe.</p>
+      <h3>Benefits:</h3>
+      <ul>
+        <li>Opens Hips</li>
+        <li>Stretches Knees/Ankles</li>
+        <li>Calms Mind</li>
+      </ul>
+    </div>
+
+    <div class="asana">
+      <h2>Baddha Konasana (bound angle)</h2>
+      <h3>Steps:</h3>
+      <p>Sit with legs extended.<br>Bend knees, bring soles together.<br>Hold feet, gently press knees down.<br>Lengthen
+        spine, breathe.</p>
+      <h3>Benefits:</h3>
+      <ul>
+        <li>Opens Hips/Groin</li>
+        <li>Stretches Inner Thighs</li>
+        <li>Relieves Menstrual Discomfort</li>
+      </ul>
+    </div>
+
+    <div class="asana">
+      <h2>Dvi Pada Kaundinyasana (two-legged Kaundinya)</h2>
+      <h3>Steps:</h3>
+      <p>Start in Plank.<br>Shift weight, bring knees toward arm.<br>Balance on hands, extend legs.<br>Engage core,
+        hold.</p>
+      <h3>Benefits:</h3>
+      <ul>
+        <li>Strengthens Arms/Wrists</li>
+        <li>Tones Core</li>
+        <li>Improves Balance</li>
+      </ul>
+    </div>
+
+    <div class="asana">
+      <h2>Eka Pada Shirshasana (one-legged headstand)</h2>
+      <h3>Steps:</h3>
+      <p>From Adho Mukha Shvanasana.<br>Bring one foot out to side.<br>Thread leg behind head.<br>Balance on head,
+        extend free leg.</p>
+      <h3>Benefits:</h3>
+      <ul>
+        <li>Strengthens Core/Arms</li>
+        <li>Improves Balance</li>
+        <li>Increases Focus</li>
+      </ul>
+    </div>
+
+
+
+
+  </main>
+
+  <script>
+    const searchInput = document.getElementById('search');
+    const asanas = document.querySelectorAll('.asana');
+
+    searchInput.addEventListener('input', () => {
+      const value = searchInput.value.toLowerCase();
+      asanas.forEach(asana => {
+        const name = asana.querySelector('h2').textContent.toLowerCase();
+        asana.style.display = name.includes(value) ? '' : 'none';
+      });
+    });
+  </script>
+
 </body>
+
 </html>

@@ -7,6 +7,9 @@ from blueprints.LandingPage import landing_bp
 from blueprints.ChatbotMain import chatbotmain_bp
 from blueprints.HomePage import homepage_bp
 from blueprints.IdentifyPlants import plantidentify_bp
+from blueprints.Yoga import yoga_bp
+from blueprints.Meditation import meditation_bp
+from blueprints.Diet import diet_bp
 
 import os
 
@@ -38,6 +41,9 @@ app.register_blueprint(landing_bp)
 app.register_blueprint(chatbotmain_bp)
 app.register_blueprint(plantidentify_bp)
 app.register_blueprint(homepage_bp)
+app.register_blueprint(yoga_bp)
+app.register_blueprint(meditation_bp)
+app.register_blueprint(diet_bp)
 
 # Default route: Redirect to login
 @app.route('/')

@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Diet Plans</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="bg-gray-100">
+		<!-- Header -->
+<header class="flex items-center justify-between px-8 py-4 bg-white shadow-md w-full z-50" style="position:fixed; top:0; left:0;">
+        <a href="/homepage">
+            <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60" width="60">
+        </a>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <nav class="space-x-6 text-gray-700 font-medium" style="font-size: medium;">
+            <a href="/homepage" class="hover:text-green-600">Home</a>
+            <a href="/yoga" class="hover:text-green-600">Yoga</a>
+            <a href="/meditation" class="hover:text-green-600">Meditation</a>
+            <a href="/diet" class="hover:text-green-600">Diet</a>
+            <a href="/identify" class="hover:text-green-600">Plant Identify</a>
+            <a href="/chatbot" class="hover:text-green-600">Chatbot</a>
+            <a href="/logout"
+                class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                style="background-color: hsl(0, 94%, 66%);">Log In</a>
+
+
+        </nav>
+    </header>
+	<br><br><br><br>
+		<main class="p-4">
+			<h2 class="text-xl font-bold mb-4">Diet Plans</h2>
+			<div id="diet-container" class="grid gap-4"></div>
+		</main>
+		<section class="footerDoc mt-10"
+        style="bottom: 0; left: 0; width: 100%; background: #f9f9f9; border-top: 1px solid #d1d5db; padding: 1rem 0; text-align: center; z-index: 1000;">
+        <div class="credits text-2xl text-black">
+            Created by <span class="text-red-500 cursor-pointer">Ayurvedic AI Team</span> | All rights reserved
+        </div>
+    </section>
+
+		<script>
+			const data = {
+				diet: [
+					{
+						name: "Weight loss",
+						plan: [
+							{
+								day: "Sunday",
+								breakfast: "Oatmeal with berries and a sprinkle of nuts",
+								lunch:
+									"Salad with grilled chicken or fish, mixed greens, and vegetables",
+								dinner: "Baked salmon with quinoa and steamed broccoli",
+							},
+							{
+								day: "Monday",
+								breakfast:
+									"Greek yogurt with fruit and a sprinkle of flaxseeds",
+								lunch: "Leftover baked salmon and quinoa",
+								dinner:
+									"Chicken stir-fry with brown rice and plenty of vegetables",
+							},
+							{
+								day: "Tuesday",
+								breakfast: "Whole-wheat toast with avocado and a poached egg",
+								lunch: "Leftover chicken stir-fry",
+								dinner: "Lentil soup with whole-grain bread",
+							},
+							{
+								day: "Wednesday",
+								breakfast:
+									"Smoothie made with spinach, banana, and protein powder",
+								lunch:
+									"Turkey or veggie burger on a whole-wheat bun with a side salad",
+								dinner: "Baked sweet potato with black-bean salad",
+							},
+							{
+								day: "Thursday",
+								breakfast: "Eggs with whole-wheat toast and a side of fruit",
+								lunch:
+									"Salad with grilled chicken or chickpeas, mixed greens, and vegetables",
+								dinner: "Chicken breast with roasted vegetables",
+							},
+							{
+								day: "Friday",
+								breakfast:
+									"Greek yogurt with berries and a sprinkle of flaxseeds",
+								lunch: "Leftover chicken breast with roasted vegetables",
+								dinner: "Fish tacos with corn tortillas, salsa, and avocado",
+							},
+							{
+								day: "Saturday",
+								breakfast: "Scrambled eggs with spinach and mushrooms",
+								lunch: "Leftover fish tacos",
+								dinner: "Vegetarian chili with a side salad",
+							},
+						],
+					},
+					{
+						name: "Diabetes",
+						plan: [
+							{
+								day: "Sunday",
+								breakfast:
+									"Oatmeal with berries and nuts or whole-wheat toast with avocado and a boiled egg",
+								lunch:
+									"Salad with grilled chicken or fish and mixed greens or lentil soup with a side salad",
+								dinner:
+									"Baked salmon with roasted vegetables or chicken stir-fry with brown rice",
+							},
+							{
+								day: "Monday",
+								breakfast:
+									"Greek yogurt with granola and sliced peaches or scrambled eggs with spinach and whole-wheat toast",
+								lunch:
+									"Turkey breast sandwich on whole-wheat bread with lettuce and tomato or quinoa salad with black beans and corn",
+								dinner:
+									"Lean beef with baked sweet potato and green beans or vegetarian chili with brown rice",
+							},
+							{
+								day: "Tuesday",
+								breakfast:
+									"Whole-wheat pancakes with berries and maple syrup (moderate) or spinach-banana-protein smoothie",
+								lunch:
+									"Leftover vegetarian chili with a side salad or tuna salad sandwich on whole-wheat bread",
+								dinner:
+									"Baked chicken with steamed asparagus and quinoa or vegetable curry with brown rice",
+							},
+							{
+								day: "Wednesday",
+								breakfast:
+									"Whole-wheat toast with avocado and a fried egg or unsweetened cereal with milk and berries",
+								lunch:
+									"Leftover vegetable curry with a side salad or lightly dressed chicken Caesar salad",
+								dinner:
+									"Grilled chicken breast with roasted Brussels sprouts and a small baked potato or lentil shepherd’s pie with mashed cauliflower topping",
+							},
+							{
+								day: "Thursday",
+								breakfast:
+									"Greek yogurt with berries and nuts or scrambled egg with whole-wheat toast",
+								lunch:
+									"Turkey or chicken salad wrap with lettuce and tomato or bean-and-vegetable burrito bowl with brown rice",
+								dinner:
+									"Baked cod with steamed broccoli and brown rice or vegetarian pasta primavera with whole-wheat pasta",
+							},
+							{
+								day: "Friday",
+								breakfast:
+									"Oatmeal with nuts and seeds or whole-wheat toast with peanut butter and banana",
+								lunch:
+									"Leftover vegetarian pasta primavera or salad with mixed greens and chickpeas",
+								dinner:
+									"Baked chicken breast with roasted sweet potatoes and green beans or lentil stew with brown rice",
+							},
+							{
+								day: "Saturday",
+								breakfast:
+									"Eggs with whole-wheat toast and avocado or spinach-berry-almond-milk smoothie",
+								lunch:
+									"Leftover lentil stew or salad with grilled tofu and mixed greens",
+								dinner:
+									"Baked salmon with roasted vegetables or chicken-and-vegetable curry with brown rice",
+							},
+						],
+					},
+					{
+						name: "Blood Pressure",
+						plan: [
+							{
+								day: "Sunday",
+								breakfast: "Oatmeal with banana and cinnamon plus 1 boiled egg",
+								lunch:
+									"Grilled chicken breast with brown rice and steamed broccoli",
+								dinner:
+									"Baked salmon with quinoa and spinach salad (olive oil dressing)",
+							},
+							{
+								day: "Monday",
+								breakfast: "Whole-grain toast with avocado and a poached egg",
+								lunch: "Lentil soup with whole-grain crackers and mixed salad",
+								dinner: "Grilled tofu with stir-fried vegetables and wild rice",
+							},
+							{
+								day: "Tuesday",
+								breakfast:
+									"Smoothie of spinach, banana, berries, flaxseed, almond milk",
+								lunch:
+									"Turkey wrap with hummus, lettuce, tomato (whole-wheat wrap)",
+								dinner: "Grilled shrimp with couscous and roasted asparagus",
+							},
+							{
+								day: "Wednesday",
+								breakfast: "Low-fat Greek yogurt with granola and mixed fruit",
+								lunch: "Chickpea salad with olive-oil dressing",
+								dinner: "Grilled chicken with sweet potato and sautéed kale",
+							},
+							{
+								day: "Thursday",
+								breakfast: "Steel-cut oats with raisins and chia seeds",
+								lunch: "Vegetable stir-fry with tofu and brown rice",
+								dinner: "Baked cod with barley and green beans",
+							},
+							{
+								day: "Friday",
+								breakfast: "Scrambled eggs with spinach and tomato",
+								lunch: "Quinoa salad with black beans, corn, and avocado",
+								dinner:
+									"Turkey meatballs with whole-grain pasta and marinara sauce",
+							},
+							{
+								day: "Saturday",
+								breakfast: "Smoothie bowl with berries, oats, chia seeds",
+								lunch:
+									"Grilled veggie sandwich on whole-grain bread (no cheese)",
+								dinner: "Baked chicken with lentils and steamed carrots",
+							},
+						],
+					},
+					{
+						name: "Hypothyroidism",
+						plan: [
+							{
+								day: "Sunday",
+								breakfast: "Scrambled eggs with whole-grain toast and orange",
+								lunch:
+									"Grilled chicken salad with leafy greens, pumpkin seeds, olive oil",
+								dinner: "Baked salmon with quinoa and steamed carrots",
+							},
+							{
+								day: "Monday",
+								breakfast: "Greek yogurt with berries and flaxseed",
+								lunch: "Lentil soup with whole-grain bread",
+								dinner: "Stir-fried tofu with brown rice and sautéed zucchini",
+							},
+							{
+								day: "Tuesday",
+								breakfast: "Oatmeal with banana, chia seeds, walnuts",
+								lunch: "Tuna wrap on whole-wheat with lettuce and cucumber",
+								dinner:
+									"Grilled turkey with mashed sweet potato and green beans",
+							},
+							{
+								day: "Wednesday",
+								breakfast:
+									"Smoothie of spinach, pineapple, avocado, unsweetened almond milk",
+								lunch: "Chickpea and quinoa salad with lemon dressing",
+								dinner: "Baked cod with wild rice and steamed broccoli",
+							},
+							{
+								day: "Thursday",
+								breakfast: "Rice cake with almond butter and boiled egg",
+								lunch: "Chicken stir-fry with bell peppers and carrots",
+								dinner: "Lentils with millet and roasted beets",
+							},
+							{
+								day: "Friday",
+								breakfast:
+									"Poached egg with sautéed spinach and whole-grain toast",
+								lunch: "Shrimp salad with avocado",
+								dinner:
+									"Grilled tofu or paneer with brown rice and sautéed kale",
+							},
+							{
+								day: "Saturday",
+								breakfast: "Chia pudding with low-fat milk and mango slices",
+								lunch: "Turkey meatballs with spaghetti squash",
+								dinner:
+									"Baked chicken thigh with mashed cauliflower and steamed asparagus",
+							},
+						],
+					},
+				],
+			};
+
+			const displayDietContent = (dietData) => {
+				const dietContainer = document.getElementById("diet-container");
+				dietContainer.innerHTML = "";
+				dietData.forEach((diet) => {
+					const dietCard = document.createElement("div");
+					dietCard.className = "bg-white shadow-md rounded-lg p-4 m-4";
+					dietCard.innerHTML = `
+                    <h2 class="text-xl font-bold mb-4">${diet.name}</h2>
+                    <div class="overflow-x-auto">
+                        <table class="min-w-full text-sm text-left border mt-2">
+                            <thead>
+                                <tr>
+                                    <th class="border px-2 py-1">Day</th>
+                                    <th class="border px-2 py-1">Breakfast</th>
+                                    <th class="border px-2 py-1">Lunch</th>
+                                    <th class="border px-2 py-1">Dinner</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                ${
+																	diet.plan
+																		? diet.plan
+																				.map(
+																					(day) =>
+																						`<tr>
+                                        <td class="border px-2 py-1 font-semibold">${day.day}</td>
+                                        <td class="border px-2 py-1">${day.breakfast}</td>
+                                        <td class="border px-2 py-1">${day.lunch}</td>
+                                        <td class="border px-2 py-1">${day.dinner}</td>
+                                    </tr>`
+																				)
+																				.join("")
+																		: '<tr><td colspan="4" class="border px-2 py-1">No plan available</td></tr>'
+																}
+                            </tbody>
+                        </table>
+                    </div>
+                `;
+					dietContainer.appendChild(dietCard);
+				});
+			};
+
+			document.addEventListener("DOMContentLoaded", () => {
+				displayDietContent(data.diet);
+			});
+		</script>
+	</body>
+</html>

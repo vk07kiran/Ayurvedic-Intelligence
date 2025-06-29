@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<!-- doccure/login.html  30 Nov 2019 04:12:20 GMT -->
+
 
 <head>
 	<meta charset="utf-8">
@@ -40,13 +40,21 @@
 				</a>
 			</div>
 
-			<nav class="navbar">
-      <a href="/homepage"> Home</a>
-      <a href="/landing"> Features </a>
-      <a href="/identify"> Plant Identify </a>
-      <a href="/chatbot"> Chatbot </a>
-      <a href="/login" class="btn">Log In</a>
-    </nav>
+			<script src="https://cdn.tailwindcss.com"></script>
+
+        <nav class="space-x-6 text-gray-700 font-medium" style="font-size: medium;">
+            <a href="/homepage" class="hover:text-green-600">Home</a>
+            <a href="/yoga" class="hover:text-green-600">Yoga</a>
+            <a href="/meditation" class="hover:text-green-600">Meditation</a>
+            <a href="/diet" class="hover:text-green-600">Diet</a>
+            <a href="/identify" class="hover:text-green-600">Plant Identify</a>
+            <a href="/chatbot" class="hover:text-green-600">Chatbot</a>
+            <a href="/logout"
+                class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                style="background-color: hsl(0, 94%, 66%);">Log In</a>
+
+
+        </nav>
 
 			<div class="fas fa-bars" id="menu-btn"></div>
 		</header>
@@ -64,11 +72,11 @@
 						<div class="account-content">
 							<div class="row align-items-center justify-content-center">
 								<div class="col-md-7 col-lg-6 login-left">
-									<img src="assets/img/login-banner.png" class="img-fluid" alt="Doccure Login">
+									<img src="assets/img/login-banner.png" class="img-fluid" alt="Login">
 								</div>
 								<div class="col-md-12 col-lg-6 login-right">
 									<div class="login-header">
-										<h3>Login <span>Doccure</span></h3>
+										<h3>Login <span>Ayurvedic Intelligence</span></h3>
 									</div>
 									<form action="{{ url_for('login.login') }}" method="POST">
 										<div class="form-group form-focus">
@@ -142,6 +150,6 @@
 
 </body>
 
-<!-- doccure/login.html  30 Nov 2019 04:12:20 GMT -->
+
 
 </html>

@@ -21,12 +21,20 @@
             </a>
         </div>
 
-        <nav class="navbar">
-            <a href="/homepage"> Home</a>
-            <a href="/landing"> Features </a>
-            <a href="/identify"> Plant Identify </a>
-            <a href="/chatbot"> Chatbot </a>
-            <a href="/login" class="btn">Log In</a>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <nav class="space-x-6 text-gray-700 font-medium" style="font-size: medium;">
+            <a href="/homepage" class="hover:text-green-600">Home</a>
+            <a href="/yoga" class="hover:text-green-600">Yoga</a>
+            <a href="/meditation" class="hover:text-green-600">Meditation</a>
+            <a href="/diet" class="hover:text-green-600">Diet</a>
+            <a href="/identify" class="hover:text-green-600">Plant Identify</a>
+            <a href="/chatbot" class="hover:text-green-600">Chatbot</a>
+            <a href="/logout"
+                class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                style="background-color: hsl(0, 94%, 66%);">Log In</a>
+
+
         </nav>
 
         <div class="fas fa-bars" id="menu-btn"></div>
@@ -38,11 +46,11 @@
         <div class="content">
             <h1>Ayurvedic AI Assistant</h1>
             <p>An intelligent system that identifies medicinal plants, suggests Ayurvedic remedies in one platform.</p>
-            <a href="#about" class="home-btn">Try it Now</a>
+            <a href="/chatbot" class="home-btn">Try it Now</a>
         </div>
 
         <div class="image">
-            <img src="assets/img/illustration-hero.svg" alt="illustration-hero">
+            <img src="assets/img/illustration-hero.svg" alt="AI Assistant">
         </div>
     </section>
     <!-- home section ends -->
@@ -64,7 +72,7 @@
                 <h1>Medicinal Plant Detection</h1>
                 <p>Capture or upload a plant image and our AI will identify it and suggest Ayurvedic uses based on
                     ancient texts and modern databases.</p>
-                <a href="#" class="all-btn">Learn More</a>
+                <a href="/identify" class="all-btn">Learn More</a>
             </div>
 
             <!-- Feature 2 -->
@@ -72,14 +80,14 @@
                 <h1>Symptom-Based Remedy Finder</h1>
                 <p>Enter your symptoms and receive personalized Ayurvedic treatment suggestions including dosage,
                     preparation, and alternate options.</p>
-                <a href="#" class="all-btn">Learn More</a>
+                <a href="/chatbot" class="all-btn">Learn More</a>
             </div>
             <div class="image">
                 <img src="assets/img/illustration-features-tab-2.svg" alt="Symptom Remedies">
             </div>
 
             <!-- Feature 3 -->
-            
+
         </div>
     </section>
     <!-- features section ends -->
@@ -101,6 +109,12 @@
                 <h3>AI Chat Bot</h3>
                 <p> </p>
                 <a href="{{ url_for('main.chatbot_page') }}" class="all-btn">Try AI Chat Bot</a>
+            </div>
+            <div class="box">
+                <img src="assets/img/Yoga&Diet.png" alt="medicine" height="180px" width="180px">
+                <h3>Yoga & Diet</h3>
+                <p> </p>
+                <a href="/yoga" class="all-btn">Try Yoga Diet</a>
             </div>
 
         </div>

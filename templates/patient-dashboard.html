@@ -28,7 +28,7 @@
 
 		<!-- Header -->
 		<header class="header">
-			
+
 			<nav class="navbar navbar-expand-lg header-nav">
 				<div class="navbar-header">
 					<a id="mobile_btn" href="javascript:void(0);">
@@ -58,22 +58,21 @@
 						</li>
 					</ul>
 				</div>
-				<nav class="space-x-6 text-gray-700 font-medium">
-					<a href="/homepage" class="hover:text-green-600">Home</a>
-				</nav>
+				
 				<ul class="nav header-navbar-rht">
-					<li class="nav-item contact-item">
-						<div class="header-contact-img">
-							<i class="far fa-hospital"></i>
-						</div>
-						<div class="header-contact-detail">
-							<p class="contact-header">Contact</p>
-							<p class="contact-info-header"> +1 315 369 5943</p>
-						</div>
-					</li>
-
-					<!-- User Menu -->
+										<!-- User Menu -->
 					<li class="nav-item dropdown has-arrow logged-item">
+						<script src="https://cdn.tailwindcss.com"></script>
+
+				<nav class="space-x-6 text-gray-700 font-medium" style="font-size: medium;">
+					<a href="/homepage" class="hover:text-green-600">Home</a>
+					<a href="/yoga" class="hover:text-green-600">Yoga</a>
+					<a href="/meditation" class="hover:text-green-600">Meditation</a>
+					<a href="/diet" class="hover:text-green-600">Diet</a>
+					<a href="/identify" class="hover:text-green-600">Plant Identify</a>
+					<a href="/chatbot" class="hover:text-green-600">Chatbot</a>
+
+				</nav>
 						<a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown">
 							<span class="user-img">
 								<img class="rounded-circle" src="{{ url_for('dashboard.uploaded_image', filename=patient.PatientProfilePic) }}

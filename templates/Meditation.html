@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Meditation</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="bg-gray-100">
+		<!-- Header -->
+<header class="flex items-center justify-between px-8 py-4 bg-white shadow-md w-full z-50" style="position:fixed; top:0; left:0;">
+        <a href="/homepage">
+            <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60" width="60">
+        </a>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <nav class="space-x-6 text-gray-700 font-medium" style="font-size: medium;">
+            <a href="/homepage" class="hover:text-green-600">Home</a>
+            <a href="/yoga" class="hover:text-green-600">Yoga</a>
+            <a href="/meditation" class="hover:text-green-600">Meditation</a>
+            <a href="/diet" class="hover:text-green-600">Diet</a>
+            <a href="/identify" class="hover:text-green-600">Plant Identify</a>
+            <a href="/chatbot" class="hover:text-green-600">Chatbot</a>
+            <a href="/logout"
+                class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"
+                style="background-color: hsl(0, 94%, 66%);">Log In</a>
+
+
+        </nav>
+    </header>
+	<br><br><br><br>
+		<main class="p-4">
+			<h2 class="text-xl font-bold mb-4">Meditation Techniques</h2>
+			<div
+				id="meditation-container"
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+			></div>
+		</main>
+		<section class="footerDoc mt-10"
+        style="bottom: 0; left: 0; width: 100%; background: #f9f9f9; border-top: 1px solid #d1d5db; padding: 1rem 0; text-align: center; z-index: 1000;">
+        <div class="credits text-2xl text-black">
+            Created by <span class="text-red-500 cursor-pointer">Ayurvedic AI Team</span> | All rights reserved
+        </div>
+    </section>
+
+		<script>
+			const data = {
+				meditation: [
+					{
+						name: "Mindfulness Meditation",
+						image: "assets/img/YogaMedImages/mindfulness meditation.jpg",
+						steps: [
+							"Sit comfortably in a quiet place",
+							"Focus on your breath or a chosen object.",
+							"Observe thoughts non-judgmentally, letting them pass.",
+							"Return focus to breath when distracted.",
+							"Practice for 5-20 minutes.",
+						],
+						benefits: [
+							"Reduces stress, anxiety, depression",
+							"improves focus and emotional regulation.",
+						],
+					},
+					{
+						name: "Transcendental Meditation",
+						image: "assets/img/YogaMedImages/transcendental meditation.jpeg",
+						steps: [
+							"Sit comfortably with eyes closed.",
+							"Silently repeat a specific mantra.",
+							"Allow thoughts to come and go without engagement.",
+							"Practice 15-20 minutes twice daily.",
+						],
+						benefits: [
+							"Lowers blood pressure, reduces stress, improves heart health.",
+						],
+					},
+					{
+						name: "Zen Meditation (Zazen)",
+						image: "assets/img/YogaMedImages/zen meditation.png",
+						steps: [
+							"Sit in lotus or half-lotus position.",
+							"Focus on breath, counting inhalations and exhalations.",
+							"Maintain an upright posture.",
+							"Observe thoughts without attachment for 20-40 minutes.",
+						],
+						benefits: [
+							"Enhances mental clarity, reduces anxiety, promotes emotional stability.",
+						],
+					},
+					{
+						name: "Vipassana Meditation",
+						image: "assets/img/YogaMedImages/vipassana meditation.jpg",
+						steps: [
+							"Sit in a quiet space with a straight back.",
+							"Focus on the sensation of breath at the nostrils.",
+							"Observe bodily sensations without reacting.",
+							"Practice for 10-60 minutes.",
+						],
+						benefits: [
+							"Improves self-awareness, reduces negative emotions, helps with chronic pain.",
+						],
+					},
+					{
+						name: "Loving-Kindness Meditation (Metta)",
+						image: "assets/img/YogaMedImages/loving-kindness meditation.jpeg",
+						steps: [
+							"Sit comfortably, close eyes.",
+							"Generate feelings of love for yourself, then others.",
+							"Repeat phrases like 'May I be happy.'",
+							"Extend to loved ones, strangers, and all beings for 10-20 minutes.",
+						],
+						benefits: [
+							"Reduces anger, enhances empathy, improves mood, helps with PTSD.",
+						],
+					},
+					{
+						name: "Body Scan Meditation",
+						image: "assets/img/YogaMedImages/body scan meditation.jpg",
+						steps: [
+							"Lie down or sit comfortably.",
+							"Close eyes and focus on breath.",
+							"Mentally scan each body part, noting sensations.",
+							"Release tension in each area for 10-30 minutes.",
+						],
+						benefits: [
+							"Reduces chronic pain, improves sleep, alleviates stress.",
+						],
+					},
+					{
+						name: "Guided Meditation",
+						image: "assets/img/YogaMedImages/guided meditation.jpeg",
+						steps: [
+							"Choose a guided meditation audio or video.",
+							"Sit or lie comfortably.",
+							"Follow the guides instructions, visualizing or focusing as directed.",
+							"Practice for 5-30 minutes.",
+						],
+						benefits: [
+							"Reduces anxiety, improves relaxation, helps with insomnia.",
+						],
+					},
+					{
+						name: "Chakra Meditation",
+						image: "assets/img/YogaMedImages/chakra meditation.jpeg",
+						steps: [
+							"Sit comfortably, close eyes.",
+							"Focus on each chakra (energy center) from root to crown.",
+							"Visualize energy flow or chant specific sounds.",
+							"Practice for 15-30 minutes.",
+						],
+						benefits: [
+							"Balances emotions, reduces stress, may help with hormonal imbalances.",
+						],
+					},
+					{
+						name: "Mantra Meditation",
+						image: "assets/img/YogaMedImages/mantra meditation.jpeg",
+						steps: [
+							"Choose a mantra (word or phrase).",
+							"Sit comfortably, close eyes.",
+							"Repeat mantra silently or aloud.",
+							"Focus on the sound for 10-20 minutes.",
+						],
+						benefits: [
+							"Reduces stress, improves concentration, helps with anxiety.",
+						],
+					},
+					{
+						name: "Qigong Meditation",
+						image: "assets/img/YogaMedImages/qigong meditation.jpeg",
+						steps: [
+							"Sit or stand in a relaxed posture.",
+							"Combine slow movements with deep breathing.",
+							"Focus on energy flow (qi).",
+							"Practice for 10-30 minutes.",
+						],
+						benefits: [
+							"Improves energy levels, reduces fatigue, supports immune function.",
+						],
+					},
+					{
+						name: "Walking Meditation",
+						image: "assets/img/YogaMedImages/walking meditation.jpeg",
+						steps: [
+							"Choose a quiet path.",
+							"Walk slowly, focusing on each step.",
+							"Sync breath with steps.",
+							"Observe surroundings mindfully for 10-20 minutes.",
+						],
+						benefits: [
+							"Reduces stress, improves mood, helps with mild depression.",
+						],
+					},
+					{
+						name: "Visualization Meditation",
+						image: "assets/img/YogaMedImages/visualization meditation.jpeg",
+						steps: [
+							"Sit comfortably, close eyes.",
+							"Visualize a peaceful scene or goal.",
+							"Engage all senses in the imagery.",
+							"Practice for 10-20 minutes.",
+						],
+						benefits: [
+							"Reduces anxiety, boosts confidence, aids in stress management.",
+						],
+					},
+					{
+						name: "Breath Awareness Meditation",
+						image: "assets/img/YogaMedImages/breath awareness meditation.jpeg",
+						steps: [
+							"Sit in a quiet space.",
+							"Focus solely on your breath's rhythm.",
+							"Notice the inhale and exhale without altering it.",
+							"Practice for 5-15 minutes.",
+						],
+						benefits: [
+							"Lowers stress, improves respiratory function, reduces anxiety.",
+						],
+					},
+					{
+						name: "Yoga Nidra",
+						image: "assets/img/YogaMedImages/yoga nidra.png",
+						steps: [
+							"Lie down in a comfortable position.",
+							"Follow a guided script or focus on relaxing each body part.",
+							"Stay aware while in a semi-sleep state.",
+							"Practice for 20-40 minutes.",
+						],
+						benefits: [
+							"Improves sleep, reduces insomnia, alleviates stress and PTSD.",
+						],
+					},
+					{
+						name: "Tonglen Meditation",
+						image: "assets/img/YogaMedImages/tonglen meditation.jpeg",
+						steps: [
+							"Sit comfortably, close eyes.",
+							"Inhale, imagining taking in others suffering.",
+							"Exhale, sending out compassion and relief.",
+							"Practice for 10-20 minutes.",
+						],
+						benefits: [
+							"Enhances compassion, reduces emotional distress, helps with depression.",
+						],
+					},
+				],
+			};
+
+			const displayMeditationContent = (meditationData) => {
+				const meditationContainer = document.getElementById(
+					"meditation-container"
+				);
+				meditationContainer.innerHTML = "";
+				meditationData.forEach((meditation) => {
+					const meditationCard = document.createElement("div");
+					meditationCard.className = "bg-white shadow-md rounded-lg p-4 m-4";
+					meditationCard.innerHTML = `
+                    <h2 class="text-xl font-bold">${meditation.name}</h2>
+                    <img src="${meditation.image}" alt="${
+						meditation.name
+					}" class="w-full h-48 object-contain bg-white rounded">
+                    <h3 class="text-lg font-semibold mt-2">Steps:</h3>
+                    <ol class="list-decimal ml-6">
+                        ${meditation.steps
+													.map((step) => `<li>${step}</li>`)
+													.join("")}
+                    </ol>
+                    <h3 class="text-lg font-semibold mt-2">Benefits:</h3>
+                    <ul class="list-disc ml-6">
+                        ${meditation.benefits
+													.map((benefit) => `<li>${benefit}</li>`)
+													.join("")}
+                    </ul>
+                `;
+					meditationContainer.appendChild(meditationCard);
+				});
+			};
+
+			document.addEventListener("DOMContentLoaded", () => {
+				displayMeditationContent(data.meditation);
+			});
+		</script>
+	</body>
+</html>

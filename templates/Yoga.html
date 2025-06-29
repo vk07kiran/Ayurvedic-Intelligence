@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Yoga</title>
+		<script src="https://cdn.tailwindcss.com"></script>
+	</head>
+	<body class="bg-gray-100">
+		<!-- Header -->
+<header class="flex items-center justify-between px-8 py-4 bg-white shadow-md w-full z-50" style="position:fixed; top:0; left:0;">
+        <a href="/homepage">
+            <img src="assets/img/AI_logo.png" alt="Ayurvedic AI" height="60" width="60">
+        </a>
+        <script src="https://cdn.tailwindcss.com"></script>
+
+        <nav class="space-x-6 text-gray-700 font-medium" style="font-size: medium; ">
+            <a href="/homepage" class="hover:text-green-600">Home</a>
+            <a href="/yoga" class="hover:text-green-600">Yoga</a>
+            <a href="/meditation" class="hover:text-green-600">Meditation</a>
+            <a href="/diet" class="hover:text-green-600">Diet</a>
+            <a href="/identify" class="hover:text-green-600">Plant Identify</a>
+            <a href="/chatbot" class="hover:text-green-600">Chatbot</a>
+            <a href="/logout" class="inline-block bg-green-500 text-white px-4 py-2 rounded-lg hover:bg-green-600 transition"        style="background-color: hsl(0, 94%, 66%);">Log In</a>
+
+
+        </nav>
+    </header>
+	<br><br><br><br>
+		<main class="p-4">
+			<h2 class="text-xl font-bold mb-4">Yoga Poses</h2>
+			<div
+				id="yoga-container"
+				class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4"
+			>
+				<!-- Yoga poses will be populated here -->
+			</div>
+		</main>
+		<section class="footerDoc mt-10"
+        style="bottom: 0; left: 0; width: 100%; background: #f9f9f9; border-top: 1px solid #d1d5db; padding: 1rem 0; text-align: center; z-index: 1000;">
+        <div class="credits text-2xl text-black">
+            Created by <span class="text-red-500 cursor-pointer">Ayurvedic AI Team</span> | All rights reserved
+        </div>
+    </section>
+
+		<script>
+			const data = {
+				yoga: [
+					{
+						name: "Adho Mukha Shvanasana (downward [facing] dog)",
+						image: "assets/img/YogaMedImages/Adho Mukha Shvanasana.png",
+						steps: [
+							"Start on hands/knees.",
+							"Tuck toes, lift hips up and back on exhale.",
+							"Form inverted 'V'.",
+							"Straighten arms/legs (slight knee bend okay).",
+							"Lengthen spine, relax head.",
+						],
+						benefits: [
+							"Back Pain",
+							"Headaches/Migraines",
+							"Stress, Anxiety, Mild Depression",
+							"Fatigue",
+							"Digestion Issues",
+						],
+					},
+					{
+						name: "Ardha Padmasana (half lotus)",
+						image: "assets/img/YogaMedImages/Ardha Padmasana.jpg",
+						steps: [
+							"Sit with legs extended.",
+							"Bend right knee, place right foot on left thigh, heel near navel.",
+							"Bend left knee, place left foot under right thigh.",
+							"Spine straight.",
+						],
+						benefits: [
+							"Opens Hips",
+							"Stretches Knees/Ankles",
+							"Calms Mind",
+							"Improves Posture",
+							"Prepares for Meditation",
+						],
+					},
+					{
+						name: "Baddha Konasana (bound angle)",
+						image: "assets/img/YogaMedImages/Baddha Konasana.png",
+						steps: [
+							"Sit with legs extended.",
+							"Bend knees, bring soles of feet together, heels close to groin.",
+							"Hold feet, sit tall.",
+							"Fold forward if comfortable.",
+						],
+						benefits: [
+							"Opens Hips/Groin",
+							"Stretches Inner Thighs",
+							"Relieves Sciatica",
+							"Stimulates Abdominal Organs",
+							"Calms Nervous System",
+						],
+					},
+					{
+						name: "Dvi Pada Kaundinyasana (two-legged Kaundinya)",
+						image: "assets/img/YogaMedImages/Dvi Pada Kaundinyasana.png",
+						steps: [
+							"Start in Plank.",
+							"Shift weight, bring knees towards elbows.",
+							"Lean forward, lift one leg straight back, other straight forward.",
+							"Balance on hands, gaze forward.",
+						],
+						benefits: [
+							"Strengthens Arms/Wrists",
+							"Tones Core",
+							"Improves Balance",
+							"Builds Confidence",
+							"Stimulates Abdominal Organs",
+						],
+					},
+					{
+						name: "Eka Pada Shirshasana (one-legged headstand)",
+						image: "assets/img/YogaMedImages/Eka Pada Shirshasana.png",
+						steps: [
+							"From Adho Mukha Shvanasana.",
+							"Bring one foot outside corresponding hand.",
+							"Place knee onto shoulder.",
+							"Lean forward, lift back leg straight up.",
+							"Balance on hands, forehead.",
+						],
+						benefits: [
+							"Strengthens Core/Arms",
+							"Improves Balance",
+							"Increases Blood Flow to Brain",
+							"Calms Mind",
+							"Tones Leg Muscles",
+						],
+					},
+					{
+						name: "Parsva Bakasana (side crane)",
+						steps: [
+							"Squat, twist torso to one side.",
+							"Place hands shoulder-width apart on that side.",
+							"Place outer thigh/hip on upper arm.",
+							"Lean forward, lift feet.",
+							"Straighten legs if possible.",
+						],
+						benefits: [
+							"Strengthens Arms/Core/Wrists",
+							"Improves Balance",
+							"Tones Abdominal Organs",
+							"Builds Concentration",
+							"Detoxifies",
+						],
+						image: "assets/img/YogaMedImages/Parsva Bakasana.png",
+					},
+					{
+						name: "Parivritta Trikonasana (reverse triangle)",
+						steps: [
+							"Start in Tadasana, step feet wide apart.",
+							"Turn right foot out, left slightly in.",
+							"Reach right arm forward, then down inside/outside right foot.",
+							"Lift left arm to sky, twist torso. Gaze at left thumb.",
+						],
+						benefits: [
+							"Strengthens Legs/Core",
+							"Stretches Spine/Hips/Hamstrings",
+							"Improves Balance",
+							"Massages Abdominal Organs",
+							"Energizes Body",
+						],
+						image: "assets/img/YogaMedImages/Parivritta Trikonasana.png",
+					},
+					{
+						name: "Prasarita Padottanasana (wide stance forward bend)",
+						steps: [
+							"Stand with feet wide apart, parallel.",
+							"Hands on hips.",
+							"Inhale, lengthen spine.",
+							"Exhale, fold forward from hips, hands to floor/blocks.",
+							"Relax head.",
+						],
+						benefits: [
+							"Stretches Hamstrings/Groin",
+							"Calms Brain/Nervous System",
+							"Relieves Mild Backache",
+							"Tones Abdominal Organs",
+							"Improves Digestion",
+						],
+						image: "assets/img/YogaMedImages/Prasarita Padottanasana.png",
+					},
+					{
+						name: "Salamba Shirshasana (supported headstand)",
+						steps: [
+							"Kneel, interlace fingers, place forearms on floor, crown of head between hands.",
+							"Lift hips, walk feet in.",
+							"Lift legs slowly, stacking hips over shoulders.",
+							"Engage core, keep legs active.",
+						],
+						benefits: [
+							"Strengthens Core/Arms/Shoulders",
+							"Calms Brain/Relieves Stress",
+							"Increases Blood Flow to Brain",
+							"Improves Digestion",
+							"Boosts Confidence",
+						],
+						image: "assets/img/YogaMedImages/Salamba Shirshasana.png",
+					},
+					{
+						name: "Supta Virasana (reclining hero)",
+						steps: [
+							"Kneel, knees together, feet wide apart.",
+							"Sit between heels.",
+							"Slowly recline back, supporting with hands/forearms.",
+							"Lie flat on back if comfortable.",
+						],
+						benefits: [
+							"Stretches Thighs/Ankles/Knees",
+							"Relieves Tired Legs",
+							"Improves Digestion",
+							"Reduces Swelling in Legs",
+							"Calms Mind",
+						],
+						image: "assets/img/YogaMedImages/Supta Virasana.jpg",
+					},
+					{
+						name: "Upavishta Konasana (wide-angle seated forward bend)",
+						steps: [
+							"Sit with legs extended wide apart.",
+							"Flex feet, engage thighs.",
+							"Sit tall, hands on floor in front.",
+							"Fold forward from hips, leading with chest.",
+						],
+						benefits: [
+							"Stretches Hamstrings/Groin/Hips",
+							"Strengthens Spine",
+							"Stimulates Abdominal Organs",
+							"Calms Brain",
+							"Relieves Sciatica",
+						],
+						image: "assets/img/YogaMedImages/Upavishta Konasana.png",
+					},
+					{
+						name: "Urdhva Dhanurasana (upwards bow)",
+						steps: [
+							"Lie on back, knees bent, feet flat near sit bones.",
+							"Hands next to ears, fingers pointing shoulders.",
+							"Press into hands/feet, lift hips and chest.",
+							"Straighten arms/legs, lift head off floor.",
+						],
+						benefits: [
+							"Strengthens Spine/Arms/Legs",
+							"Stretches Chest/Lungs/Shoulders",
+							"Energizes Body",
+							"Relieves Depression",
+							"Stimulates Thyroid/Pituitary Glands",
+						],
+						image: "assets/img/YogaMedImages/Urdhva Dhanurasana.png",
+					},
+					{
+						name: "Utthita Parsvakonasana (extended side angle)",
+						steps: [
+							"Start in Warrior II (front knee bent 90 degrees).",
+							"Place front forearm on front thigh or hand to floor outside foot.",
+							"Extend top arm overhead, bicep by ear.",
+							"Open chest, gaze up.",
+						],
+						benefits: [
+							"Strengthens Legs/Knees/Ankles",
+							"Stretches Groin/Spine/Shoulders/Chest",
+							"Tones Abdominal Organs",
+							"Increases Stamina",
+							"Relieves Sciatica",
+						],
+						image: "assets/img/YogaMedImages/Utthita Parsvakonasana.jpg",
+					},
+					{
+						name: "Viparita Dandasana (inverted staff)",
+						steps: [
+							"Often done using a chair or bolster.",
+							"Sit on floor, place chair behind you.",
+							"Recline back over chair, head towards floor or supported.",
+							"Feet on floor or extended.",
+						],
+						benefits: [
+							"Strengthens Spine/Abdominals",
+							"Stretches Chest/Hips/Shoulders",
+							"Relieves Backache",
+							"Calms Brain/Nervous System",
+							"Therapeutic for Asthma",
+						],
+						image: "assets/img/YogaMedImages/Viparita Dandasana.jpg",
+					},
+				],
+			};
+
+			const displayYogaContent = (yogaData) => {
+				const yogaContainer = document.getElementById("yoga-container");
+				yogaContainer.innerHTML = "";
+				yogaData.forEach((yoga) => {
+					const yogaCard = document.createElement("div");
+					yogaCard.className = "bg-white shadow-md rounded-lg p-4 m-4";
+					yogaCard.innerHTML = `
+                    <h2 class="text-xl font-bold">${yoga.name}</h2>
+                    <img src="${yoga.image}" alt="${
+						yoga.name
+					}" class="w-full h-48 object-contain bg-white rounded">
+                    <h3 class="text-lg font-semibold mt-2">Steps:</h3>
+                    <ol class="list-decimal ml-6">
+                        ${yoga.steps.map((step) => `<li>${step}</li>`).join("")}
+                    </ol>
+                    <h3 class="text-lg font-semibold mt-2">Benefits:</h3>
+                    <ul class="list-disc ml-6">
+                        ${yoga.benefits
+													.map((benefit) => `<li>${benefit}</li>`)
+													.join("")}
+                    </ul>
+                `;
+					yogaContainer.appendChild(yogaCard);
+				});
+			};
+
+			document.addEventListener("DOMContentLoaded", () => {
+				displayYogaContent(data.yoga);
+			});
+		</script>
+	</body>
+</html>
