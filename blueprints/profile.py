@@ -112,3 +112,4 @@ def submit_Patient():
 def logout():
     session.clear()  # Clears all session data (user_id, username, etc.)
     return redirect(url_for('login.login'))  # Redirect to login page
+

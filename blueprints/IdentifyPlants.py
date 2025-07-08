@@ -83,7 +83,7 @@ def predict_route():
         top2_conf = top_probs[1].item()
         top_class_idx = top_idxs[0].item()
 
-        if top1_conf < 0.8 or (top1_conf - top2_conf) < 0.2:
+        if top1_conf < 0.85 or (top1_conf - top2_conf) < 0.2:
             return render_template("PlantDetection.html", result=f"This plant seems to match several known species. Please provide a clearer, closer image or try again from a different angle.")
 
         plant_name = class_names[top_class_idx]
