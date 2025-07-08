@@ -18,3 +18,6 @@ In order to use chatbot, Download and install ollama and the model llama3.2 & mx
 - Start apache and mysql server through xampp
 - Create a database name userdb
 - Create Tables for Doctor and Patient
+
+### Note
+Until the last commit, it requires python 3.10 or less to run the project.
